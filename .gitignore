@@ -1,0 +1,23 @@
+# Dependências
+node_modules/
+
+# Builds
+dist/
+.angular/
+coverage/
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+
+# Arquivos de teste rápido das aulas
+testes.js
+testes.ts
+
+# Sistema e editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.log
