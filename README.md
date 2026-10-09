@@ -21,7 +21,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 
 **Versões-alvo:** Angular 22 · TypeScript 6 · Node 22+ (você tem o Node 24 ✅)
 
-**Baseado em:** [roadmap.sh/frontend](https://roadmap.sh/frontend), [roadmap.sh/angular](https://roadmap.sh/angular), [roadmap.sh/typescript](https://roadmap.sh/typescript), na documentação oficial ([angular.dev](https://angular.dev)) e nas grades de cursos atuais.
+**Baseado em:** [roadmap.sh/frontend](https://roadmap.sh/frontend), [roadmap.sh/angular](https://roadmap.sh/angular), [roadmap.sh/typescript](https://roadmap.sh/typescript), [roadmap.sh/ai-engineer](https://roadmap.sh/ai-engineer), [roadmap.sh/ai-agents](https://roadmap.sh/ai-agents), [roadmap.sh/claude-code](https://roadmap.sh/claude-code), na documentação oficial ([angular.dev](https://angular.dev)) e nas grades de cursos atuais.
 
 ## Como estudar cada aula
 
@@ -57,6 +57,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 - [ ] 2.4 ✅ **Linters e formatadores:** ESLint e Prettier (o que são, diferença entre eles, instalar, configurar, integrar ao VS Code, formatar ao salvar)
 - [ ] 2.5 ✅ Git e GitHub para front-end: `.gitignore`, branches, pull requests, conventional commits (🔍 Husky + lint-staged)
 - [ ] 2.6 🔍 Bundlers e build: o que um bundler faz, Vite e esbuild (o Angular usa por baixo dos panos)
+- [ ] 2.7 ✅ Estudando com IA: usar a IA como tutor, e não como atalho (o que pedir e o que **não** pedir enquanto aprende)
 
 ## Módulo 3: HTML e CSS (revisão completa)
 - [ ] 3.1 ✅ HTML semântico e estrutura de um documento
@@ -145,17 +146,46 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 - [ ] 9.10 🔍 Internacionalização (i18n) e animações
 - [ ] 9.11 ✅ Build de produção e deploy (Vercel/Netlify/Firebase; Docker + Nginx)
 
-## Módulo 10: 🏁 Projeto final FullStack
-- [ ] 10.1 ✅ API Spring Boot: CORS, autenticação JWT, validação e respostas de erro padronizadas
-- [ ] 10.2 ✅ Front Angular completo: rotas protegidas, interceptors, formulários, estado, testes
-- [ ] 10.3 ✅ CI com GitHub Actions (lint + testes + build) e deploy das duas pontas
-- [ ] 10.4 🔍 Desenvolvendo com IA: usar assistentes de código com senso crítico
+## Módulo 10: IA como ferramenta de desenvolvimento (back e front)
+> 💡 Pode ser estudado **em paralelo a partir do Módulo 5**. As aulas 10.8 a 10.10 rendem mais depois do Módulo 8, quando você já consegue avaliar o código Angular que a IA gera.
+
+- [ ] 10.1 ✅ Como LLMs funcionam: tokens, janela de contexto, temperatura, alucinações, modelos de raciocínio x padrão, custo e escolha do modelo
+- [ ] 10.2 ✅ Engenharia de prompt: anatomia de um bom prompt (papel, contexto, tarefa, restrições, formato), exemplos (few-shot), pedir um plano antes do código, iterar; prompts para bugs, refatoração e testes
+- [ ] 10.3 ✅ Engenharia de contexto: o que colocar no contexto e o que deixar de fora; arquivos de instruções (`CLAUDE.md`, `AGENTS.md`, regras do Copilot e do Cursor), `llms.txt`; gerenciar o contexto em sessões longas
+- [ ] 10.4 ✅ Agentes de código: o que é um agente, o loop agêntico, ferramentas (Claude Code, GitHub Copilot, Cursor, Codex), modos de permissão e modo de planejamento
+- [ ] 10.5 ✅ Fluxo de trabalho com agentes: explorar → planejar → implementar → testar → revisar; TDD com IA; tarefas pequenas e commits frequentes; git worktrees
+- [ ] 10.6 ✅ **MCP na prática:** o que é (host, client, server), configurar servidores úteis (Angular CLI, GitHub, Playwright, banco de dados) e os riscos de cada um
+- [ ] 10.7 ✅ Personalizando o agente: skills, subagentes, comandos customizados, hooks (ex.: rodar lint e testes após cada edição) e plugins
+- [ ] 10.8 ✅ IA na sua stack: Angular (guia oficial de boas práticas, MCP do Angular CLI, evitar código gerado no padrão antigo) e Spring Boot (testes, migrations, revisão de JPA/N+1 e de segurança)
+- [ ] 10.9 ✅ Revisando código gerado por IA: APIs e pacotes inventados, segredos expostos, vulnerabilidades, código desatualizado; nunca aceitar o que você não entende
+- [ ] 10.10 🔍 Automação: agentes em modo headless, revisão de pull requests por IA e IA no CI (GitHub Actions)
+
+## Módulo 11: IA dentro das suas aplicações (Spring AI + Angular)
+- [ ] 11.1 ✅ APIs de LLM: mensagens e papéis (system/user/assistant), parâmetros, tokens, custo, rate limits e por que a chave de API **nunca** fica no front
+- [ ] 11.2 ✅ Saídas estruturadas (JSON com schema) e streaming de respostas (SSE)
+- [ ] 11.3 ✅ Spring AI: `ChatClient`, templates de prompt, advisors e memória de conversa
+- [ ] 11.4 ✅ Tool calling: o modelo chamando métodos do seu back-end
+- [ ] 11.5 ✅ Embeddings, busca semântica e banco vetorial (PostgreSQL + pgvector)
+- [ ] 11.6 ✅ RAG: chunking, indexação, recuperação e geração ("converse com seus documentos")
+- [ ] 11.7 ✅ Criando um servidor MCP: em Java (Spring AI MCP) e em TypeScript (SDK oficial)
+- [ ] 11.8 ✅ Agentes: o loop agêntico do zero, padrões (ReAct, planejador-executor, multiagentes) e 🔍 frameworks (Claude Agent SDK, Spring AI, LangChain4j)
+- [ ] 11.9 ✅ Front-end para IA no Angular: chat com streaming, renderizar markdown, estados de carregamento e erro, boas práticas de UX para IA
+- [ ] 11.10 ✅ Segurança em apps com IA: prompt injection, dados pessoais (LGPD), permissões das ferramentas e guardrails
+- [ ] 11.11 🔍 Avaliação e observabilidade: evals, testes de regressão de prompts, tracing, monitoramento de custo e latência
+- [ ] 11.12 🔍 Modelos locais (Ollama) x modelos via API: quando usar cada um
+- [ ] 🛠️ Mini projeto: assistente que responde perguntas sobre documentos (RAG) com Spring AI + Angular
+
+## Módulo 12: 🏁 Projeto final FullStack
+- [ ] 12.1 ✅ API Spring Boot: CORS, autenticação JWT, validação e respostas de erro padronizadas
+- [ ] 12.2 ✅ Front Angular completo: rotas protegidas, interceptors, formulários, estado, testes
+- [ ] 12.3 ✅ Uma funcionalidade com IA (ex.: busca semântica ou assistente) usando o que foi visto no Módulo 11
+- [ ] 12.4 ✅ CI com GitHub Actions (lint + testes + build) e deploy das duas pontas
 
 ---
 
 ## ⏭️ Fora do escopo (de propósito)
 
 Está nos roadmaps, mas não é necessário para o seu objetivo de FullStack Java + Angular:
-React, Vue, Svelte, Solid · GraphQL · PWAs · apps mobile e desktop (Ionic, Electron...) · Web Components a fundo · NGXS · AnalogJS · criar bibliotecas, schematics e CLI builders do Angular.
+React, Vue, Svelte, Solid · GraphQL · PWAs · apps mobile e desktop (Ionic, Electron...) · Web Components a fundo · NGXS · AnalogJS · criar bibliotecas, schematics e CLI builders do Angular · treinar ou fazer fine-tuning de modelos · machine learning/ciência de dados · IA multimodal (geração de imagem, áudio e vídeo) · ecossistema Python de IA.
 
 Se algum dia precisar, a base que você vai construir aqui torna tudo isso fácil de aprender.

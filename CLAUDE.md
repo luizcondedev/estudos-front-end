@@ -16,7 +16,8 @@ Este repositório é o **curso de front-end** que o Claude está dando ao Luiz, 
 3. Para cada conceito, explique: **o que é → para que serve → como funciona, passo a passo → exemplo → armadilhas.**
 4. Sempre que fizer sentido, diga **onde aquilo aparece no Angular**, para o aluno ver a utilidade.
 5. Termine cada aula com um **resumo em tabela** (JavaScript/TypeScript x Java) e **regras de ouro**.
-6. Nível de profundidade: seguir as marcações do README (✅ essencial = a fundo; 🔍 conhecer = visão geral, quando usar, onde consultar).
+6. **Aulas de IA (2.7 e Módulos 10 e 11):** é a área que muda mais rápido. Pesquise o estado atual (versões do Spring AI, do MCP, das ferramentas) antes de escrever. Cubra o lado do back (Java/Spring AI) **e** o do front (Angular), e apresente as ferramentas de forma neutra (Claude Code, Copilot, Cursor...). O Módulo 10 pode ser feito em paralelo a partir do Módulo 5.
+7. Nível de profundidade: seguir as marcações do README (✅ essencial = a fundo; 🔍 conhecer = visão geral, quando usar, onde consultar).
 
 ## Estrutura de arquivos
 
@@ -28,7 +29,7 @@ NN-nome-do-modulo/
 ```
 
 - A numeração das aulas é **por módulo** (1.1, 1.2...). A pasta usa o número dentro do módulo: a aula 1.3 fica em `01-javascript/aula-03-...`.
-- Pastas de módulo seguem o README: `01-javascript`, `02-web-e-ferramentas`, `03-html-css`, `04-js-navegador`, `05-typescript`, `06-seguranca`, `07-angular-fundamentos`, `08-angular-aplicacao`, `09-angular-avancado`, `10-projeto-fullstack`.
+- Pastas de módulo seguem o README: `01-javascript`, `02-web-e-ferramentas`, `03-html-css`, `04-js-navegador`, `05-typescript`, `06-seguranca`, `07-angular-fundamentos`, `08-angular-aplicacao`, `09-angular-avancado`, `10-ia-no-desenvolvimento`, `11-ia-nas-aplicacoes`, `12-projeto-fullstack`.
 - A aula 1.1 não tem `aula.md`: foi dada pelo chat, e a pasta contém a solução do aluno.
 
 ## Como criar uma aula
