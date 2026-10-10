@@ -696,6 +696,52 @@ this.produtos.update(lista => lista.map(p => p.id === id ? { ...p, preco: novoPr
 
 ---
 
+## 7.1 Apêndice: `reduce` com um objeto como acumulador
+
+O desafio 12 dos exercícios precisa de um uso do `reduce` que vai além da soma. Lembrando o funcionamento:
+
+- A função do `reduce` recebe o **acumulador** (resultado parcial) e o **item** atual.
+- O que a função **retorna** vira o acumulador da próxima volta.
+- O segundo argumento do `reduce` é o **valor inicial** do acumulador.
+
+> ☕ Em Java, é o padrão "variável acumuladora + loop":
+> ```java
+> int acumulador = 0;
+> for (int n : numeros) acumulador = acumulador + n;
+> ```
+
+**O acumulador pode ser qualquer coisa, inclusive um objeto.** Exemplo: somar o valor dos produtos por categoria.
+
+```javascript
+const produtos = [
+  { nome: "Arroz",  preco: 15, categoria: "GRAOS" },
+  { nome: "Feijão", preco: 9,  categoria: "GRAOS" },
+  { nome: "Batata", preco: 8,  categoria: "VERDURA" },
+];
+
+const totalPorCategoria = produtos.reduce((acumulador, produto) => {
+  const categoria = produto.categoria;
+  const totalAtual = acumulador[categoria] === undefined ? 0 : acumulador[categoria];
+  return { ...acumulador, [categoria]: totalAtual + produto.preco };
+}, {});
+
+console.log(totalPorCategoria); // { GRAOS: 24, VERDURA: 8 }
+```
+
+**Dois detalhes novos:**
+- **`[categoria]: valor` (chave dinâmica):** com colchetes, o nome da propriedade vem do **valor da variável**. Se `categoria` vale `"GRAOS"`, a chave é `GRAOS`. Sem os colchetes, a chave seria literalmente "categoria".
+- **Retornar um objeto numa arrow function de uma linha** exige parênteses: `=> ({ ... })`. Sem eles, o `{` seria entendido como o início do corpo da função.
+
+| Volta | Acumulador (entra) | Produto | Retorno |
+|---|---|---|---|
+| 1ª | `{}` | Arroz (GRAOS, 15) | `{ GRAOS: 15 }` |
+| 2ª | `{ GRAOS: 15 }` | Feijão (GRAOS, 9) | `{ GRAOS: 24 }` |
+| 3ª | `{ GRAOS: 24 }` | Batata (VERDURA, 8) | `{ GRAOS: 24, VERDURA: 8 }` |
+
+> ☕ É o `Collectors.groupingBy(Produto::getCategoria, Collectors.summingDouble(Produto::getPreco))` do Java, feito na mão.
+
+---
+
 ## 8. 📋 Resumo (cola rápida)
 
 | Sintaxe | Nome | O que faz |

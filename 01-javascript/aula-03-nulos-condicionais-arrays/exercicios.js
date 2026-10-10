@@ -70,7 +70,7 @@ console.log("1)", valores.map(v => [v, v ? "truthy" : "falsy"]));
 // 5) SOME / EVERY / INCLUDES
 // a) Existe algum produto com estoque zerado (exatamente 0)?
 // b) Todos os produtos custam menos de 10.000?
-// c) Monte o array de categorias (sem repetição: dica, new Set) e
+// c) Monte o array de categorias (sem repetição: use Set, seção 4.11) e
 //    verifique com includes se existe a categoria "CARNES".
 // ------------------------------------------------------------
 // TODO

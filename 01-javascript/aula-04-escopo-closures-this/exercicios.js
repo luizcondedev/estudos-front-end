@@ -58,6 +58,9 @@ for (let j = 0; j < 3; j++) setTimeout(() => console.log("3) let:", j), 0);
 //   resetar()     → volta para "inicio"
 //   valor()       → retorna o valor atual
 // O valor NÃO pode ser acessível diretamente (contador.atual deve dar undefined).
+// Dica: `inicio = 0` é um PARÂMETRO COM VALOR PADRÃO, igual ao padrão do destructuring
+// da aula 1.2: se quem chamar não passar o argumento, ele vale 0. (Java não tem;
+// lá você usaria sobrecarga: criarContador() chamando criarContador(0, 1).)
 // ------------------------------------------------------------
 // TODO
 

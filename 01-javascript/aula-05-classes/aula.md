@@ -196,6 +196,26 @@ console.log(conta.saldo);            // undefined (#saldo e saldo são campos DI
 
 > 💡 **Spoiler do TypeScript:** no TS (e portanto no Angular), você também vai ter `private`, `protected`, `public` e `readonly`, iguais aos do Java. Mas o `#` é o privado "de verdade" do JavaScript: ele continua privado até em tempo de execução.
 
+### 4.3 Prévia: lançando e capturando erros
+
+O método `depositar` acima usa `throw` para recusar um valor inválido. Os exercícios desta aula também usam `try/catch`, então aqui vai o básico (o assunto completo é a aula 1.6). A boa notícia: é **quase igual ao Java**.
+
+```javascript
+try {
+  conta.depositar(-10);                  // lança o erro...
+  console.log("esta linha não executa");
+} catch (e) {                            // ...e cai aqui
+  console.log("Erro:", e.message);       // "Erro: Valor deve ser positivo"
+}
+```
+
+| Java | JavaScript |
+|---|---|
+| `throw new IllegalArgumentException("msg");` | `throw new Error("msg");` |
+| `catch (IllegalArgumentException e)` | `catch (e)`, sem tipo: captura **qualquer** erro |
+| `e.getMessage()` | `e.message` |
+| Checked exceptions (`throws` obrigatório) | Não existem: nenhum erro obriga você a tratar |
+
 ---
 
 ## 5. Getters e setters

@@ -262,6 +262,8 @@ console.log(conta.consultar()); // 150
 console.log(conta.saldo);       // undefined: não existe acesso direto!
 ```
 
+> ☕ O `throw new Error("Valor inválido")` funciona como o `throw new IllegalArgumentException("Valor inválido")` do Java: interrompe a função e lança um erro. Se ninguém tratar, o programa para e mostra a mensagem. A forma de capturar (`try/catch`) é igual à do Java e aparece na aula 1.5; o assunto completo fica para a aula 1.6.
+
 > ☕ É o efeito de um atributo `private` com métodos públicos, só que usando closure em vez de classe. (Na aula 1.5 veremos que as classes do JS também têm campos privados, com `#`.)
 
 **2) "Fábricas" de funções configuradas**

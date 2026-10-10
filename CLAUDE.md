@@ -41,7 +41,7 @@ NN-nome-do-modulo/
    - Os exercícios variam entre **prever antes de rodar**, **implementar**, **consertar um bug** e um **desafio final**.
    - Deixe as chamadas de teste comentadas, com o resultado **esperado** ao lado.
    - Quando houver dados compartilhados, inclua no final uma verificação automática de mutação.
-   - Só use conceitos já ensinados até aquela aula.
+   - Só use conceitos já ensinados até aquela aula. **Antes de entregar, liste toda sintaxe, operador e método usado nos exercícios (inclusive nas dicas e nos testes prontos) e confira se cada um foi explicado.** Na aula 1.2, o desafio 12 exigia `??` e `reduce` com acumulador objeto sem ter ensinado, e o aluno não conseguiu resolver.
 4. **Teste antes de entregar:** rode o arquivo de exercícios (precisa executar sem erro com os TODOs vazios) e confira os resultados esperados escrevendo uma solução de referência **fora do repositório** (no scratchpad). Nunca deixe soluções no repositório.
 5. Não marque a aula como concluída no README: isso só acontece depois da correção.
 
@@ -64,6 +64,6 @@ NN-nome-do-modulo/
 
 Atualize esta seção sempre que criar ou corrigir aulas.
 
-- **Concluídas:** 1.1
-- **Prontas, aguardando o aluno:** 1.2, 1.3, 1.4, 1.5
+- **Concluídas:** 1.1, 1.2 (nota 9,5)
+- **Prontas, aguardando o aluno:** 1.3, 1.4, 1.5
 - **Próximas a criar:** 1.6 (erros e JSON), 1.7 (módulos ES)

@@ -410,6 +410,33 @@ Array.of(7);                                // [7]
 
 > ☕ `Array.from({ length: 5 }, ...)` faz o papel do `IntStream.rangeClosed(1, 5)`. O `_` é uma convenção para "parâmetro que eu não uso".
 
+### 4.11 `Set`: coleção sem repetição
+
+O `Set` guarda valores **sem duplicatas**. É o `HashSet` do Java.
+
+```javascript
+const categorias = new Set();
+categorias.add("BEBIDA");
+categorias.add("GRAOS");
+categorias.add("BEBIDA");      // ignorado: já existe
+
+categorias.size;               // 2 (no Java: size())
+categorias.has("GRAOS");       // true (no Java: contains())
+categorias.delete("GRAOS");    // remove
+```
+
+**O uso mais comum: remover duplicatas de um array.** Você cria um `Set` a partir do array e depois converte de volta para array com spread (aula 1.2):
+
+```javascript
+const repetidas = ["BEBIDA", "GRAOS", "BEBIDA", "VERDURA", "GRAOS"];
+const unicas = [...new Set(repetidas)];
+// ["BEBIDA", "GRAOS", "VERDURA"] (mantém a ordem da primeira aparição)
+```
+
+> ☕ Equivale a `new ArrayList<>(new LinkedHashSet<>(lista))` ou `lista.stream().distinct().toList()`.
+
+> ⚠️ Assim como o `includes`, o `Set` compara **objetos por referência**: dois objetos com o mesmo conteúdo contam como diferentes, porque o JS não tem `equals`/`hashCode`. Use `Set` com valores simples (strings, números).
+
 ---
 
 ## 5. Ordenação
