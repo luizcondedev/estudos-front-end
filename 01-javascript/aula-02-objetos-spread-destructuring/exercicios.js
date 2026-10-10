@@ -35,12 +35,12 @@ p2.nome = "Lentilha";
 
 const p3 = { nome: "Lentilha" };
 
-// Qual será o valor de x?           Resposta:
-// Qual será o valor de p1.nome?     Resposta:
-// p1 === p2 dá true ou false?       Resposta:
-// p1 === p3 dá true ou false?       Resposta:
+// Qual será o valor de x?           Resposta: 5
+// Qual será o valor de p1.nome?     Resposta: Lentilha
+// p1 === p2 dá true ou false?       Resposta: True
+// p1 === p3 dá true ou false?       Resposta: False
 // POR QUE p1 === p3 dá esse resultado, se o conteúdo é igual?
-// Resposta:
+// Resposta: Porque o === compara a referência de memória, e não se um objeto é igual ao outro
 
 console.log("1)", x, p1.nome, p1 === p2, p1 === p3);
 
@@ -48,37 +48,43 @@ console.log("1)", x, p1.nome, p1 === p2, p1 === p3);
 // 2) SPREAD EM OBJETO
 // Crie `batataCara`: uma cópia do produtos[0] com preço 12.
 // ------------------------------------------------------------
-// TODO
+const batataCara = {...produtos[0], preco: 12};
 
-// console.log("2)", batataCara, produtos[0]);
+ console.log("2)", batataCara, produtos[0]);
 
 // ------------------------------------------------------------
 // 3) ADICIONAR PROPRIEDADE
 // Crie `batataComEstoque`: cópia de produtos[0] com uma nova
 // propriedade `estoque: 100`.
 // ------------------------------------------------------------
-// TODO
+const batataComEstoque = {...produtos[0], estoque: 100};
 
-// console.log("3)", batataComEstoque);
+ console.log("3)", batataComEstoque);
 
 // ------------------------------------------------------------
 // 4) ADICIONAR NA LISTA (imutável)
 // Crie a função adicionarProduto(lista, produto) que retorna
 // um NOVO array com o produto no final. Não use push!
 // ------------------------------------------------------------
-// TODO
+function adicionarProduto(lista, produto){
+  return [...lista, produto];
+}
 
-// const listaComFeijao = adicionarProduto(produtos, { id: 6, nome: "Feijão", preco: 9.5, categoria: "GRAOS" });
-// console.log("4)", listaComFeijao.length, produtos.length); // esperado: 6 5
+ const listaComFeijao = adicionarProduto(produtos, { id: 6, nome: "Feijão", preco: 9.5, categoria: "GRAOS" });
+ console.log("4)", listaComFeijao.length, produtos.length); // esperado: 6 5
 
 // ------------------------------------------------------------
 // 5) REMOVER DA LISTA (imutável)
 // Crie a função removerProduto(lista, id) que retorna um NOVO
 // array sem o produto daquele id.
 // ------------------------------------------------------------
-// TODO
+function removerProduto(lista, id){
+  const listaSemItem = lista.filter(p => p.id !== id);
+  
+  return listaSemItem;
+}
 
-// console.log("5)", removerProduto(produtos, 2).map(p => p.nome));
+ console.log("5)", removerProduto(produtos, 2).map(p => p.nome));
 
 // ------------------------------------------------------------
 // 6) ATUALIZAR NA LISTA (imutável): o mais importante!
@@ -86,11 +92,15 @@ console.log("1)", x, p1.nome, p1 === p2, p1 === p3);
 // um NOVO array em que só o produto daquele id tem o preço alterado.
 // Dica: map + ternário + spread (seção 4.4 da aula).
 // ------------------------------------------------------------
-// TODO
+function atualizarPreco(lista, id, novoPreco){
+  const listaComProdutoAtualizado = lista.map(p => p.id === id ? {...p, preco: novoPreco} : p);
 
-// const atualizada = atualizarPreco(produtos, 3, 19.9);
-// console.log("6)", atualizada[2].preco, produtos[2].preco); // esperado: 19.9 15.99
-// console.log("6) mesmo objeto nos não alterados?", atualizada[0] === produtos[0]); // esperado: true
+  return listaComProdutoAtualizado;
+}
+
+ const atualizada = atualizarPreco(produtos, 3, 19.9);
+ console.log("6)", atualizada[2].preco, produtos[2].preco); // esperado: 19.9 15.99
+ console.log("6) mesmo objeto nos não alterados?", atualizada[0] === produtos[0]); // esperado: true
 
 // ------------------------------------------------------------
 // 7) DESTRUCTURING DE OBJETO
@@ -99,27 +109,27 @@ console.log("1)", x, p1.nome, p1 === p2, p1 === p3);
 //   - preco
 //   - estoque, com valor padrão 0
 // ------------------------------------------------------------
-// TODO
+const {nome: nomeBebida, preco, estoque = 0} = produtos[1];
 
-// console.log("7)", nomeBebida, preco, estoque);
+ console.log("7)", nomeBebida, preco, estoque);
 
 // ------------------------------------------------------------
 // 8) DESTRUCTURING NO PARÂMETRO
 // Usando map com destructuring no parâmetro ({ nome, preco }) => ...
 // gere um array de strings no formato: "Batata custa R$ 8"
 // ------------------------------------------------------------
-// TODO
+const descricoes = produtos.map(({nome, preco}) => `${nome} custa R$ ${preco}`);
 
-// console.log("8)", descricoes);
+ console.log("8)", descricoes);
 
 // ------------------------------------------------------------
 // 9) REMOVER PROPRIEDADE SEM MUTAR (destructuring + rest)
 // Gere `produtoParaApi`: o produtos[0] SEM o campo `id`.
 // Não use delete!
 // ------------------------------------------------------------
-// TODO
+const {_id, ...produtoParaApi} = produtos[0];
 
-// console.log("9)", produtoParaApi, produtos[0]);
+ console.log("9)", produtoParaApi, produtos[0]);
 
 // ------------------------------------------------------------
 // 10) REST EM PARÂMETRO + SPREAD EM CHAMADA
@@ -128,20 +138,27 @@ console.log("1)", x, p1.nome, p1 === p2, p1 === p3);
 //    esse array com spread.
 // c) Use Math.max com spread para achar o maior preço.
 // ------------------------------------------------------------
-// TODO
+function somarPrecos(...precos){
+  return precos.reduce((total, p) => total + p, 0);
+}
 
-// console.log("10)", somarPrecos(1, 2, 3), somarPrecos(...precos), maiorPreco);
+const precos = produtos.map(p => p.preco);
+const maiorPreco = Math.max(...precos);
+
+ console.log("10)", somarPrecos(1, 2, 3), somarPrecos(...precos), maiorPreco);
 
 // ------------------------------------------------------------
 // 11) DESAFIO: CÓPIA RASA
 // Crie `notebookRecife`: cópia do produtos[4] em que a cidade do
 // fornecedor seja "Recife", SEM alterar o produto original.
 // Atenção: { ...produtos[4] } sozinho NÃO resolve. Por quê?
-// Resposta:
+// Resposta: Porque o Spread faz uma cópia simples, como o fornecedor é um objeto dentro de um objeto, ele copia a referencia de memoria de fornecedor, alterando assim tambem o valor do objeto original
 // ------------------------------------------------------------
-// TODO
+const notebookRecife = {...produtos[4], fornecedor: {
+  ...produtos[4].fornecedor, cidade: "Recife"
+}};
 
-// console.log("11)", notebookRecife.fornecedor.cidade, produtos[4].fornecedor.cidade); // esperado: Recife São Paulo
+ console.log("11)", notebookRecife.fornecedor.cidade, produtos[4].fornecedor.cidade); // esperado: Recife São Paulo
 
 // ------------------------------------------------------------
 // 12) DESAFIO: AGRUPAR POR CATEGORIA (reduce + spread)
@@ -150,9 +167,12 @@ console.log("1)", x, p1.nome, p1 === p2, p1 === p3);
 // Dica: [categoria] entre colchetes cria uma chave a partir de uma variável:
 //   const campo = "cor"; const obj = { [campo]: "azul" }; // { cor: "azul" }
 // ------------------------------------------------------------
-// TODO
+const porCategoria = produtos.reduce((acumulador, produto) => ({
+  ...acumulador, 
+  [produto.categoria]: [...acumulador[produto.categoria] ?? [], produto.nome]
+}), {}) // O Reduce tem um acumulador, esse acumulador é um Objeto vazio, a cada produto eu crio um novo objeto passando o acumulador
 
-// console.log("12)", porCategoria);
+console.log("12)", porCategoria);
 
 // ------------------------------------------------------------
 // VERIFICAÇÃO FINAL (não altere): confere se você mutou algo

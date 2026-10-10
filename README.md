@@ -43,7 +43,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 
 ## Módulo 1: JavaScript (lógica, sem página)
 - [x] 1.1 ✅ Fundamentos: variáveis, tipos, operadores, controle de fluxo, funções, arrow functions, arrays (`map`/`filter`/`reduce`)
-- [ ] 1.2 ✅ Objetos, valor x referência, imutabilidade, spread, rest e destructuring
+- [x] 1.2 ✅ Objetos, valor x referência, imutabilidade, spread, rest e destructuring
 - [ ] 1.3 ✅ Truthy/falsy, `null` x `undefined`, `?.` e `??`, mais métodos de array, ordenação
 - [ ] 1.4 ✅ Escopo, hoisting, closures e `this`
 - [ ] 1.5 ✅ Classes, herança e getters/setters (comparando com Java)
