@@ -27,9 +27,9 @@ const produtosOriginais = structuredClone(produtos);
 // Para cada valor, diga se é truthy ou falsy:
 // ------------------------------------------------------------
 const valores = [0, "0", "", " ", [], {}, null, undefined, NaN, "false", -1];
-// 0:          | "0":        | "":         | " ":
-// []:         | {}:         | null:       | undefined:
-// NaN:        | "false":    | -1:
+// 0: falsy    | "0":truthy        | "":falsy    | " ":truthy
+// []:truthy   | {}:thuthy         | null:falsy  | undefined:falsy
+// NaN:falsy   | "false":truthy    | -1:truthy
 
 console.log("1)", valores.map(v => [v, v ? "truthy" : "falsy"]));
 
@@ -39,11 +39,11 @@ console.log("1)", valores.map(v => [v, v ? "truthy" : "falsy"]));
 // Se o estoque for null/undefined, mostre "sem informação".
 // ATENÇÃO: a Batata tem estoque 0, e 0 é um valor válido (deve aparecer "0 unidades").
 // Faça primeiro com || e veja o bug, depois corrija com ??.
-// Explique o bug:
+// Explique o bug: O bug acontece pq o || verifica se o p.estoque e falsy, como 0 é falsy, tem esse bug, enquanto o ?? so cai no valor padrao caso o p.estoque seja null
 // ------------------------------------------------------------
-// TODO
+const estoques = produtos.map(p => `${p.nome}: X ${p.estoque ?? "Sem informação"}`);
 
-// console.log("2)", estoques);
+ console.log("2)", estoques);
 
 // ------------------------------------------------------------
 // 3) OPTIONAL CHAINING
@@ -54,7 +54,11 @@ console.log("1)", valores.map(v => [v, v ? "truthy" : "falsy"]));
 // ------------------------------------------------------------
 // TODO
 
-// console.log("3)", produtos.map(cidadeDoFornecedor));
+function cidadeDoFornecedor(produto){
+  return produto.fornecedor?.endereco?.cidade ?? "Sem fornecedor";
+}
+
+ console.log("3)", produtos.map(cidadeDoFornecedor));
 
 // ------------------------------------------------------------
 // 4) FIND + ?. + ??
@@ -63,8 +67,11 @@ console.log("1)", valores.map(v => [v, v ? "truthy" : "falsy"]));
 // Uma linha só no corpo da função!
 // ------------------------------------------------------------
 // TODO
+function buscarPreco(nome){
+  return produtos.find(p => p.nome === nome)?.preco ?? "Produto não encontrado";
+}
 
-// console.log("4)", buscarPreco("Arroz"), buscarPreco("Café"));
+ console.log("4)", buscarPreco("Arroz"), buscarPreco("Café"));
 
 // ------------------------------------------------------------
 // 5) SOME / EVERY / INCLUDES
@@ -74,16 +81,19 @@ console.log("1)", valores.map(v => [v, v ? "truthy" : "falsy"]));
 //    verifique com includes se existe a categoria "CARNES".
 // ------------------------------------------------------------
 // TODO
-
-// console.log("5)", temZerado, todosAbaixo10mil, categorias, temCarnes);
+const temZerado = produtos.some(p => p.estoque === 0);
+const todosAbaixo10mil = produtos.every(p => p.preco < 10000);
+const categorias = [...new Set(produtos.map(p => p.categoria))];
+const temCarnes = categorias.includes("CARNES");
+ console.log("5)", temZerado, todosAbaixo10mil, categorias, temCarnes);
 
 // ------------------------------------------------------------
 // 6) INCLUDES COM OBJETOS
-// Por que o resultado abaixo é false? Responda:
+// Por que o resultado abaixo é false? Responda: Porque o includes compara objeto por referencia 
 // Depois, reescreva a verificação de um jeito que dê true.
 // ------------------------------------------------------------
 const batataCopia = { ...produtos[0] };
-console.log("6)", produtos.includes(batataCopia));
+console.log("6)", produtos.some(p => p.id === batataCopia.id));
 // TODO
 
 // ------------------------------------------------------------
@@ -91,8 +101,9 @@ console.log("6)", produtos.includes(batataCopia));
 // Pegue os 3 primeiros produtos e os 2 últimos (2 arrays), sem mutar.
 // ------------------------------------------------------------
 // TODO
-
-// console.log("7)", tresPrimeiros.map(p => p.nome), doisUltimos.map(p => p.nome));
+const tresPrimeiros = produtos.slice(0, 3);
+const doisUltimos = produtos.slice(-2);
+ console.log("7)", tresPrimeiros.map(p => p.nome), doisUltimos.map(p => p.nome));
 
 // ------------------------------------------------------------
 // 8) ORDENAÇÃO
@@ -103,18 +114,23 @@ console.log("6)", produtos.includes(batataCopia));
 // ------------------------------------------------------------
 // TODO
 
-// console.log("8a)", porPrecoDesc.map(p => p.nome));
-// console.log("8b)", porNome.map(p => p.nome));
-// console.log("8c)", porCategoriaEPreco.map(p => `${p.categoria} - ${p.nome}`));
+const porPrecoDesc = produtos.toSorted((a, b) => b.preco - a.preco);
+const porNome = produtos.toSorted((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
+const porCategoriaEPreco = produtos.toSorted((a, b) => a.categoria.localeCompare(b.categoria) || a.preco - b.preco);
+
+
+ console.log("8a)", porPrecoDesc.map(p => p.nome));
+ console.log("8b)", porNome.map(p => p.nome));
+ console.log("8c)", porCategoriaEPreco.map(p => `${p.categoria} - ${p.nome}`));
 
 // ------------------------------------------------------------
 // 9) A ARMADILHA DO SORT
 // Responda ANTES de rodar: qual será o resultado?
-// Resposta:
+// Resposta: [1, 10, 100, 25, 9]
 // Depois, corrija para ordenar numericamente.
 // ------------------------------------------------------------
 const notas = [10, 9, 100, 1, 25];
-console.log("9)", notas.toSorted());
+console.log("9)", notas.toSorted((a, b) => a - b));
 // TODO
 
 // ------------------------------------------------------------
@@ -127,7 +143,20 @@ console.log("9)", notas.toSorted());
 // ------------------------------------------------------------
 // TODO
 
-// console.log("10)", estoquePorCategoria);
+const porCategoria = Object.groupBy(produtos, p => p.categoria);
+const pares = Object.entries(porCategoria).map(([key, value]) => {
+  const total = value.reduce((a, p) => { 
+    a += p.estoque ?? 0
+
+    return a;
+  }, 0);
+
+  return [key, total]; 
+})
+
+const estoquePorCategoria = Object.fromEntries(pares);
+
+console.log("10)", estoquePorCategoria);
 
 // ------------------------------------------------------------
 // 11) DESAFIO: RELATÓRIO
@@ -137,8 +166,15 @@ console.log("9)", notas.toSorted());
 // ordenados por preço crescente, nomes separados por vírgula.
 // ------------------------------------------------------------
 // TODO
+const produtosEmEstoque = produtos
+  .filter(p => p.estoque > 0)
+  .toSorted((a,b) => a.preco - b.preco)
+  .map(p => p.nome)
+  .join(", ");
+  
+const relatorio = `Produtos em estoque (do mais barato ao mais caro): ${produtosEmEstoque}`
 
-// console.log("11)", relatorio);
+ console.log("11)", relatorio);
 
 // ------------------------------------------------------------
 // VERIFICAÇÃO FINAL (não altere)

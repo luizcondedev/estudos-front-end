@@ -64,6 +64,6 @@ NN-nome-do-modulo/
 
 Atualize esta seção sempre que criar ou corrigir aulas.
 
-- **Concluídas:** 1.1, 1.2 (nota 9,5)
-- **Prontas, aguardando o aluno:** 1.3, 1.4, 1.5
+- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5)
+- **Prontas, aguardando o aluno:** 1.4, 1.5
 - **Próximas a criar:** 1.6 (erros e JSON), 1.7 (módulos ES)
