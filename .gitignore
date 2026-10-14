@@ -15,6 +15,7 @@ testes.js
 testes.ts
 
 # Sistema e editor
+.idea/
 .DS_Store
 Thumbs.db
 .vscode/*
