@@ -28,14 +28,29 @@
 // Regras: nome e email públicos; ativo PRIVADO com getter `ativo`
 // (usado como cliente.ativo, sem parênteses). Sem sobrecarga!
 // ------------------------------------------------------------
-// TODO
+class Cliente {
+    #ativo = true;
 
-// const cli1 = new Cliente("Ana", "ana@email.com");
-// const cli2 = new Cliente("Bia");
-// cli2.desativar();
-// console.log("1)", cli1.email, cli1.ativo, cli2.email, cli2.ativo); // esperado: ana@email.com true sem-email false
-// cli1.ativo = false; // não deve ter efeito (só existe getter)
-// console.log("1)", cli1.ativo); // esperado: true
+    constructor(nome, email = "sem-email") {
+        this.nome = nome;
+        this.email = email;
+    }
+
+    get ativo() {
+        return this.#ativo;
+    }
+
+    desativar() {
+        this.#ativo = false;
+    }
+}
+
+const cli1 = new Cliente("Ana", "ana@email.com");
+const cli2 = new Cliente("Bia");
+cli2.desativar();
+console.log("1)", cli1.email, cli1.ativo, cli2.email, cli2.ativo); // esperado: ana@email.com true sem-email false
+cli1.ativo = false; // não deve ter efeito (só existe getter)
+console.log("1)", cli1.ativo); // esperado: true
 
 // ------------------------------------------------------------
 // 2) GETTER, SETTER E VALIDAÇÃO
@@ -46,20 +61,61 @@
 //   - getter `disponivel` → true se estoque > 0
 //   - toString() → "Produto(Batata, R$ 8,00)"
 // ------------------------------------------------------------
-// TODO
+class Produto {
+    #preco;
+    static #contador = 0;
 
-// const batata = new Produto({ nome: "Batata", preco: 8 });
-// console.log("2)", batata.preco, batata.precoFormatado, batata.disponivel, `${batata}`);
-// try {
-//   batata.preco = -1;
-// } catch (e) {
-//   console.log("2) erro capturado:", e.message);
-// }
-// try {
-//   new Produto({ nome: "Inválido", preco: -10 }); // deve falhar já na criação!
-// } catch (e) {
-//   console.log("2) erro na criação:", e.message);
-// }
+    constructor({nome, preco, estoque = 0}) {
+        this.preco = preco;
+        Produto.#contador++;
+        this.id = Produto.#contador;
+        this.nome = nome;
+        this.estoque = estoque;
+    }
+
+    get preco() {
+        return this.#preco;
+    }
+
+    get precoFormatado() {
+        return this.#preco.toLocaleString("pt-BR", {style: "currency", currency: "BRL"});
+    }
+
+    get disponivel() {
+        return this.estoque > 0;
+    }
+
+    set preco(value) {
+        if (typeof value !== "number" || value < 0) throw new Error("Preço Inválido");
+        this.#preco = value;
+    }
+
+    toString() {
+        return `Produto(${this.nome}, ${this.precoFormatado})`;
+    }
+
+    equals(outro) {
+        return outro instanceof Produto && this.nome === outro.nome && this.preco === outro.preco;
+    }
+
+    static total() {
+        return Produto.#contador;
+    }
+
+}
+
+const batata = new Produto({nome: "Batata", preco: 8});
+console.log("2)", batata.preco, batata.precoFormatado, batata.disponivel, `${batata}`);
+try {
+    batata.preco = -1;
+} catch (e) {
+    console.log("2) erro capturado:", e.message);
+}
+try {
+    new Produto({nome: "Inválido", preco: -10}); // deve falhar já na criação!
+} catch (e) {
+    console.log("2) erro na criação:", e.message);
+}
 
 // ------------------------------------------------------------
 // 3) STATIC
@@ -69,9 +125,10 @@
 //   - um método estático total() que retorna quantos foram criados
 // ------------------------------------------------------------
 
-// const p1 = new Produto({ nome: "A", preco: 1 });
-// const p2 = new Produto({ nome: "B", preco: 2 });
-// console.log("3)", p1.id, p2.id, Produto.total()); // ids sequenciais, total = quantidade criada até aqui
+const p1 = new Produto({nome: "A", preco: 1});
+const p2 = new Produto({nome: "B", preco: 2});
+console.log("3)", p1.id, p2.id, Produto.total()); // ids sequenciais, total = quantidade criada até aqui
+
 
 // ------------------------------------------------------------
 // 4) HERANÇA
@@ -84,45 +141,86 @@
 //     → metade do salarioBase; e descrever() → descrição do pai + " (estagiário)"
 // Repare que você NÃO precisa sobrescrever descrever() no Gerente: polimorfismo!
 // ------------------------------------------------------------
-// TODO
+class Funcionario {
+    constructor(nome, salarioBase) {
+        this.nome = nome;
+        this.salarioBase = salarioBase;
+    }
 
-// const equipe = [
-//   new Funcionario("Ana", 3000),
-//   new Gerente("Bia", 5000, 2000),
-//   new Estagiario("Caio", 2000),
-// ];
-// equipe.forEach(f => console.log("4)", f.descrever()));
-// console.log("4) Folha total:", equipe.reduce((total, f) => total + f.calcularSalario(), 0)); // esperado: 11000
-// console.log("4)", equipe[1] instanceof Funcionario, equipe[0] instanceof Gerente); // esperado: true false
+    calcularSalario() {
+        return this.salarioBase;
+    }
+
+    descrever() {
+        return `${this.nome} ganha ${this.calcularSalario().toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        })}`
+    }
+}
+
+class Gerente extends Funcionario {
+    constructor(nome, salarioBase, bonus) {
+        super(nome, salarioBase);
+        this.bonus = bonus;
+    }
+
+    calcularSalario() {
+        return super.calcularSalario() + this.bonus;
+    }
+}
+
+class Estagiario extends Funcionario {
+
+    calcularSalario() {
+        return super.calcularSalario() / 2;
+    }
+
+    descrever() {
+        return super.descrever() + " (estagiário)";
+    }
+}
+
+const equipe = [
+    new Funcionario("Ana", 3000),
+    new Gerente("Bia", 5000, 2000),
+    new Estagiario("Caio", 2000),
+];
+equipe.forEach(f => console.log("4)", f.descrever()));
+console.log("4) Folha total:", equipe.reduce((total, f) => total + f.calcularSalario(), 0)); // esperado: 11000
+console.log("4)", equipe[1] instanceof Funcionario, equipe[0] instanceof Gerente); // esperado: true false
 
 // ------------------------------------------------------------
 // 5) EQUALS: prever e resolver
 // a) Responda ANTES de descomentar: o que cada linha imprime?
-//    Resposta 5.1:
-//    Resposta 5.2:
+//    Resposta 5.1: false
+//    Resposta 5.2: false
 // b) Crie em Produto um método equals(outro) que compare por nome e preço,
 //    e use-o com some() para verificar se a lista contém o produto.
 // ------------------------------------------------------------
-// const x = new Produto({ nome: "Arroz", preco: 15 });
-// const y = new Produto({ nome: "Arroz", preco: 15 });
-// console.log("5.1)", x === y);
-// console.log("5.2)", [x].includes(y));
-// TODO (b)
+const x = new Produto({nome: "Arroz", preco: 15});
+const y = new Produto({nome: "Arroz", preco: 15});
+console.log("5.1)", x === y);
+console.log("5.2)", [x].includes(y));
+
+console.log([x].some(p => p.equals(y)));
 
 // ------------------------------------------------------------
 // 6) O THIS SE PERDE: prever e consertar
 // O código abaixo quebra. Responda por quê e conserte SÓ A ÚLTIMA LINHA.
-// Por quê:
+// Por quê: Pois quem vai executar o tic é o setTimeout, então vai ocorrer a perca do this, que o setTimeout vai executar sem nenhum objeto antes do ponto
 // ------------------------------------------------------------
 class Relogio {
-  segundos = 0;
-  tic() {
-    this.segundos++;
-    console.log("6) segundos:", this.segundos);
-  }
+    segundos = 0;
+
+    tic() {
+        this.segundos++;
+        console.log("6) segundos:", this.segundos);
+    }
 }
+
 const relogio = new Relogio();
-// setTimeout(relogio.tic, 0); // ← descomente, veja o erro e conserte
+setTimeout(() => relogio.tic(), 0); // ← descomente, veja o erro e conserte
 
 // ------------------------------------------------------------
 // 7) DESAFIO: CARRINHO DE COMPRAS
@@ -136,15 +234,45 @@ const relogio = new Relogio();
 //   - getter itens → retorna uma CÓPIA do array (quem usa não pode mutar o #itens!)
 // Use os métodos de array das aulas anteriores (find, filter, reduce...).
 // ------------------------------------------------------------
-// TODO
+class Carrinho {
+    #itens = [];
 
-// const carrinho = new Carrinho();
-// const arroz = new Produto({ nome: "Arroz", preco: 15.99 });
-// const feijao = new Produto({ nome: "Feijão", preco: 9.5 });
-// carrinho.adicionar(arroz, 2);
-// carrinho.adicionar(feijao);
-// carrinho.adicionar(arroz);      // deve somar: arroz fica com 3
-// console.log("7)", carrinho.quantidadeItens, carrinho.total.toFixed(2)); // esperado: 4 57.47
-// carrinho.itens.push("lixo");    // não pode afetar o carrinho
-// carrinho.remover(feijao.id);
-// console.log("7)", carrinho.quantidadeItens, carrinho.itens.length); // esperado: 3 1
+    adicionar(produto, quantidade = 1) {
+        if(quantidade <= 0) throw new Error("Quantidade Invalida");
+        const itemExistente = this.#itens.find(i => i.produto.id === produto.id);
+
+        if(itemExistente){
+            itemExistente.quantidade += quantidade;
+        }else{
+            this.#itens.push({produto, quantidade});
+        }
+    }
+
+    remover(idProduto){
+        if(!(this.#itens.some(i => i.produto.id === idProduto))) throw new Error("Produto nao encontrado");
+        this.#itens = this.#itens.filter(i => i.produto.id !== idProduto);
+    }
+
+    get total(){
+        return this.#itens.reduce((acumulador, i) => acumulador + (i.produto.preco * i.quantidade), 0);
+    }
+
+    get quantidadeItens(){
+        return this.#itens.reduce((acumulador, i) => acumulador + i.quantidade, 0);
+    }
+
+    get itens(){
+        return this.#itens.map(i => ({...i}));
+    }
+}
+
+ const carrinho = new Carrinho();
+ const arroz = new Produto({ nome: "Arroz", preco: 15.99 });
+ const feijao = new Produto({ nome: "Feijão", preco: 9.5 });
+ carrinho.adicionar(arroz, 2);
+ carrinho.adicionar(feijao);
+ carrinho.adicionar(arroz);      // deve somar: arroz fica com 3
+ console.log("7)", carrinho.quantidadeItens, carrinho.total.toFixed(2)); // esperado: 4 57.47
+ carrinho.itens.push("lixo");    // não pode afetar o carrinho
+ carrinho.remover(feijao.id);
+ console.log("7)", carrinho.quantidadeItens, carrinho.itens.length); // esperado: 3 1

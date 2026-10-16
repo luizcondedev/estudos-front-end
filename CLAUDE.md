@@ -64,6 +64,16 @@ NN-nome-do-modulo/
 
 Atualize esta seção sempre que criar ou corrigir aulas.
 
-- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9)
-- **Prontas, aguardando o aluno:** 1.5
+- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5)
+- **Prontas, aguardando o aluno:** nenhuma
 - **Próximas a criar:** 1.6 (erros e JSON), 1.7 (módulos ES)
+
+### Pontos de atenção do aluno (reforçar nas próximas aulas e correções)
+
+- **Conferir a saída contra o enunciado**, e não só se o código roda (errou a ordem decrescente e o formato da saída na 1.3).
+- **Cópia rasa:** volta a aparecer (getter `itens` da 1.5 copiava só o array). Reforçar sempre que houver objetos aninhados.
+- **Hábitos do Java que não se aplicam ao JS:** getters para campos públicos (`getNome()`), construtores que só repassam para o `super`.
+- **`this`:** entendeu bem depois da explicação "olhe a linha em que a função é executada e veja o que está antes do ponto", mostrando um `forEach` simplificado que chama `callback(item)`. Reusar essa abordagem quando o tema voltar (classes no TS, componentes Angular).
+- **Validação:** lembrar que comparações com `undefined` dão `false` (buraco de validação) e que valores padrão não servem para dados obrigatórios.
+- **Responder o "por quê"** nos exercícios de explicação (deixou campos em branco na 1.4).
+- Aprende melhor quando o raciocínio é montado em etapas (ex.: `for...of` → `reduce` mutável → `reduce` imutável) e com tabelas "volta a volta".
