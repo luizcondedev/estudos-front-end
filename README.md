@@ -47,7 +47,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 - [x] 1.3 ✅ Truthy/falsy, `null` x `undefined`, `?.` e `??`, mais métodos de array, ordenação
 - [x] 1.4 ✅ Escopo, hoisting, closures e `this`
 - [x] 1.5 ✅ Classes, herança e getters/setters (comparando com Java)
-- [ ] 1.6 ✅ Tratamento de erros (`try/catch`, `throw`) e JSON (`JSON.parse`/`JSON.stringify`)
+- [x] 1.6 ✅ Tratamento de erros (`try/catch`, `throw`) e JSON (`JSON.parse`/`JSON.stringify`)
 - [ ] 1.7 ✅ Módulos ES (`import`/`export`)
 
 ## Módulo 2: Como a web funciona + ferramentas do dia a dia

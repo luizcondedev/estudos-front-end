@@ -31,6 +31,7 @@ NN-nome-do-modulo/
 - A numeração das aulas é **por módulo** (1.1, 1.2...). A pasta usa o número dentro do módulo: a aula 1.3 fica em `01-javascript/aula-03-...`.
 - Pastas de módulo seguem o README: `01-javascript`, `02-web-e-ferramentas`, `03-html-css`, `04-js-navegador`, `05-typescript`, `06-seguranca`, `07-angular-fundamentos`, `08-angular-aplicacao`, `09-angular-avancado`, `10-ia-no-desenvolvimento`, `11-ia-nas-aplicacoes`, `12-projeto-fullstack`.
 - A aula 1.1 não tem `aula.md`: foi dada pelo chat, e a pasta contém a solução do aluno.
+- Aulas com exercícios em vários arquivos (a partir da 1.7) usam uma pasta `exercicios/` com um `README.md` de instruções e um `package.json` com `"type": "module"`. Para corrigir, rode cada parte conforme o README da pasta.
 
 ## Como criar uma aula
 
@@ -64,13 +65,13 @@ NN-nome-do-modulo/
 
 Atualize esta seção sempre que criar ou corrigir aulas.
 
-- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5)
-- **Prontas, aguardando o aluno:** nenhuma
-- **Próximas a criar:** 1.6 (erros e JSON), 1.7 (módulos ES)
+- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5), 1.6 (nota 9,5)
+- **Prontas, aguardando o aluno:** 1.7
+- **Próximas a criar:** Módulo 2, começando pela 2.1 (como a internet funciona)
 
 ### Pontos de atenção do aluno (reforçar nas próximas aulas e correções)
 
-- **Conferir a saída contra o enunciado**, e não só se o código roda (errou a ordem decrescente e o formato da saída na 1.3).
+- **Conferir a saída contra o enunciado**, e não só se o código roda (errou a ordem decrescente e o formato da saída na 1.3; na 1.6, a mensagem de erro do desafio saiu sem acento e com maiúscula diferente do enunciado).
 - **Cópia rasa:** volta a aparecer (getter `itens` da 1.5 copiava só o array). Reforçar sempre que houver objetos aninhados.
 - **Hábitos do Java que não se aplicam ao JS:** getters para campos públicos (`getNome()`), construtores que só repassam para o `super`.
 - **`this`:** entendeu bem depois da explicação "olhe a linha em que a função é executada e veja o que está antes do ponto", mostrando um `forEach` simplificado que chama `callback(item)`. Reusar essa abordagem quando o tema voltar (classes no TS, componentes Angular).
