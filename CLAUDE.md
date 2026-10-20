@@ -5,7 +5,7 @@ Este repositório é o **curso de front-end** que o Claude está dando ao Luiz, 
 ## Sobre o aluno
 
 - **Objetivo:** tornar-se dev **FullStack** (Java/Spring Boot no back + Angular no front). **Não** quer se especializar em front-end.
-- **Linguagem mais forte: Java.** Usa Windows, VS Code e Node 24.
+- **Linguagem mais forte: Java.** Usa Windows, **IntelliJ IDEA** (trocou o VS Code pelo IntelliJ na aula 1.7) e Node 24. Instruções de IDE nas aulas: IntelliJ/WebStorm primeiro, com o VS Code como alternativa. O aluno tem o **IntelliJ IDEA Ultimate 2026** (pago), que inclui todo o suporte a JS/TS/Angular, o debugger de JavaScript e os test runners: não é preciso usar o WebStorm.
 - **Idioma:** todo o conteúdo é em **português do Brasil**, com acentuação correta.
 - O conhecimento de HTML/CSS está enferrujado: o Módulo 3 é uma revisão completa, não um resumo.
 
@@ -16,7 +16,7 @@ Este repositório é o **curso de front-end** que o Claude está dando ao Luiz, 
 3. Para cada conceito, explique: **o que é → para que serve → como funciona, passo a passo → exemplo → armadilhas.**
 4. Sempre que fizer sentido, diga **onde aquilo aparece no Angular**, para o aluno ver a utilidade.
 5. Termine cada aula com um **resumo em tabela** (JavaScript/TypeScript x Java) e **regras de ouro**.
-6. **Aulas de IA (2.7 e Módulos 10 e 11):** é a área que muda mais rápido. Pesquise o estado atual (versões do Spring AI, do MCP, das ferramentas) antes de escrever. Cubra o lado do back (Java/Spring AI) **e** o do front (Angular), e apresente as ferramentas de forma neutra (Claude Code, Copilot, Cursor...). O Módulo 10 pode ser feito em paralelo a partir do Módulo 5.
+6. **Aulas de IA (2.8 e Módulos 10 e 11):** é a área que muda mais rápido. Pesquise o estado atual (versões do Spring AI, do MCP, das ferramentas) antes de escrever. Cubra o lado do back (Java/Spring AI) **e** o do front (Angular), e apresente as ferramentas de forma neutra (Claude Code, Copilot, Cursor...). O Módulo 10 pode ser feito em paralelo a partir do Módulo 5.
 7. Nível de profundidade: seguir as marcações do README (✅ essencial = a fundo; 🔍 conhecer = visão geral, quando usar, onde consultar).
 
 ## Estrutura de arquivos
@@ -67,7 +67,7 @@ Atualize esta seção sempre que criar ou corrigir aulas.
 
 - **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5), 1.6 (nota 9,5), 1.7 (nota 9). **Módulo 1 completo.**
 - **Prontas, aguardando o aluno:** nenhuma
-- **Próximas a criar:** Módulo 2, começando pela 2.1 (como a internet funciona)
+- **Próximas a criar:** Módulo 2, começando pela 2.1 (a IDE para front-end: IntelliJ Ultimate)
 
 ### Pontos de atenção do aluno (reforçar nas próximas aulas e correções)
 

@@ -2,7 +2,7 @@
 
 Os exercícios desta aula usam **vários arquivos**, porque módulos só fazem sentido assim. O `package.json` desta pasta (com `"type": "module"`) ativa os módulos ES para todas as subpastas (seção 3 da aula). **Não apague esse arquivo.**
 
-Rode todos os comandos **de dentro desta pasta** (`exercicios`). No terminal do VS Code:
+Rode todos os comandos **de dentro desta pasta** (`exercicios`). No terminal da IDE (no IntelliJ: **Alt+F12**):
 
 ```bash
 cd 01-javascript/aula-07-modulos/exercicios

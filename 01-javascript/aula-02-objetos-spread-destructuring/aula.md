@@ -6,7 +6,7 @@
 > ```
 > Ao final desta aula você vai entender **cada caractere** dessa linha.
 
-**Como rodar os exemplos:** crie um arquivo `testes.js` nesta pasta, cole/digite o exemplo e rode `node testes.js` no terminal do VS Code.
+**Como rodar os exemplos:** crie um arquivo `testes.js` nesta pasta, cole/digite o exemplo e rode `node testes.js` no terminal da IDE.
 
 ---
 

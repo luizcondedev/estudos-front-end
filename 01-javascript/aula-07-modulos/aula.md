@@ -79,7 +79,7 @@ O Node tem dois sistemas de módulos (o antigo, CommonJS, aparece na seção 10)
 }
 ```
 
-O `package.json` é o arquivo de configuração de um projeto Node (é parecido com o `pom.xml` do Maven). Você vai estudá-lo a fundo na aula 2.3; por enquanto, só precisa dessa linha.
+O `package.json` é o arquivo de configuração de um projeto Node (é parecido com o `pom.xml` do Maven). Você vai estudá-lo a fundo na aula 2.4; por enquanto, só precisa dessa linha.
 
 > 💡 O Node 24 até consegue **detectar sozinho** um arquivo que usa `import`/`export`, mas deixar o `"type": "module"` explícito é o padrão dos projetos reais (todo projeto criado com o Vite vem assim) e evita surpresas.
 
@@ -383,7 +383,7 @@ import { Component, signal } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 ```
 
-> ☕ É o equivalente às dependências do `pom.xml`: você declara a biblioteca, o Maven baixa, e você importa as classes dela. No JS, quem baixa é o npm (aula 2.3).
+> ☕ É o equivalente às dependências do `pom.xml`: você declara a biblioteca, o Maven baixa, e você importa as classes dela. No JS, quem baixa é o npm (aula 2.4).
 
 ---
 

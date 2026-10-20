@@ -25,8 +25,8 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 
 ## Como estudar cada aula
 
-1. Leia o `aula.md` com calma (no VS Code, **Ctrl+Shift+V** abre a visualização formatada).
-2. **Digite** os exemplos (não copie e cole) e rode com `node arquivo.js`.
+1. Leia o `aula.md` com calma (o IntelliJ já abre o Markdown com a visualização formatada ao lado; no VS Code, use **Ctrl+Shift+V**).
+2. **Digite** os exemplos (não copie e cole) e rode com `node arquivo.js` no terminal da IDE (no IntelliJ: **Alt+F12**).
 3. Resolva o `exercicios.js` da aula.
 4. Diga no chat **"corrige a aula X.Y"**, que eu leio seus arquivos direto da pasta.
 5. Só avance quando conseguir **explicar** cada conceito com suas palavras.
@@ -51,13 +51,14 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 - [x] 1.7 ✅ Módulos ES (`import`/`export`)
 
 ## Módulo 2: Como a web funciona + ferramentas do dia a dia
-- [ ] 2.1 ✅ Como a internet funciona: HTTP/HTTPS, métodos e status codes, DNS, domínio, hospedagem
-- [ ] 2.2 ✅ Como o navegador funciona: parsing, DOM, renderização; DevTools (Elements, Console, Network, Sources)
-- [ ] 2.3 ✅ npm a fundo: `package.json`, `dependencies` x `devDependencies`, scripts, `npx`, versionamento semântico, `package-lock.json` (🔍 pnpm/yarn)
-- [ ] 2.4 ✅ **Linters e formatadores:** ESLint e Prettier (o que são, diferença entre eles, instalar, configurar, integrar ao VS Code, formatar ao salvar)
-- [ ] 2.5 ✅ Git e GitHub para front-end: `.gitignore`, branches, pull requests, conventional commits (🔍 Husky + lint-staged)
-- [ ] 2.6 🔍 Bundlers e build: o que um bundler faz, Vite e esbuild (o Angular usa por baixo dos panos)
-- [ ] 2.7 ✅ Estudando com IA: usar a IA como tutor, e não como atalho (o que pedir e o que **não** pedir enquanto aprende)
+- [ ] 2.1 ✅ **A IDE para front-end:** o IntelliJ IDEA Ultimate para JS/TS/Angular (e o que muda na versão gratuita e no WebStorm), configurar o Node na IDE, terminal integrado, rodar e **depurar** código JS com breakpoints (como você já faz com Java), atalhos úteis
+- [ ] 2.2 ✅ Como a internet funciona: HTTP/HTTPS, métodos e status codes, DNS, domínio, hospedagem
+- [ ] 2.3 ✅ Como o navegador funciona: parsing, DOM, renderização; DevTools (Elements, Console, Network, Sources)
+- [ ] 2.4 ✅ npm a fundo: `package.json`, `dependencies` x `devDependencies`, scripts, `npx`, versionamento semântico, `package-lock.json` (🔍 pnpm/yarn)
+- [ ] 2.5 ✅ **Linters e formatadores:** ESLint e Prettier (o que são, diferença entre eles, instalar, configurar, integrar à IDE, formatar ao salvar)
+- [ ] 2.6 ✅ Git e GitHub para front-end: `.gitignore`, branches, pull requests, conventional commits, a integração Git do IntelliJ (🔍 Husky + lint-staged)
+- [ ] 2.7 🔍 Bundlers e build: o que um bundler faz, Vite e esbuild (o Angular usa por baixo dos panos)
+- [ ] 2.8 ✅ Estudando com IA: usar a IA como tutor, e não como atalho (o que pedir e o que **não** pedir enquanto aprende)
 
 ## Módulo 3: HTML e CSS (revisão completa)
 - [ ] 3.1 ✅ HTML semântico e estrutura de um documento
@@ -104,7 +105,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 
 ## Módulo 7: Angular, fundamentos
 - [ ] 7.1 ✅ O que é Angular, AngularJS x Angular, SPA e arquitetura geral
-- [ ] 7.2 ✅ Angular CLI: instalar, `ng new`, `ng serve`, `ng generate`, `ng build`; estrutura do projeto; Angular DevTools e Language Service
+- [ ] 7.2 ✅ Angular CLI: instalar, `ng new`, `ng serve`, `ng generate`, `ng build`; estrutura do projeto; suporte a Angular na IDE (IntelliJ/WebStorm), Angular DevTools e Language Service
 - [ ] 7.3 ✅ Componentes: anatomia (`selector`, `template`, `styles`, `imports`), standalone, encapsulamento de estilos
 - [ ] 7.4 ✅ Templates e data binding: interpolação, property, attribute, class/style, event binding
 - [ ] 7.5 ✅ Controle de fluxo: `@if`, `@else`, `@for` (com `track`), `@switch`, `@let`
@@ -152,7 +153,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 - [ ] 10.1 ✅ Como LLMs funcionam: tokens, janela de contexto, temperatura, alucinações, modelos de raciocínio x padrão, custo e escolha do modelo
 - [ ] 10.2 ✅ Engenharia de prompt: anatomia de um bom prompt (papel, contexto, tarefa, restrições, formato), exemplos (few-shot), pedir um plano antes do código, iterar; prompts para bugs, refatoração e testes
 - [ ] 10.3 ✅ Engenharia de contexto: o que colocar no contexto e o que deixar de fora; arquivos de instruções (`CLAUDE.md`, `AGENTS.md`, regras do Copilot e do Cursor), `llms.txt`; gerenciar o contexto em sessões longas
-- [ ] 10.4 ✅ Agentes de código: o que é um agente, o loop agêntico, ferramentas (Claude Code, GitHub Copilot, Cursor, Codex), modos de permissão e modo de planejamento
+- [ ] 10.4 ✅ Agentes de código: o que é um agente, o loop agêntico, ferramentas (Claude Code, GitHub Copilot, Cursor, Codex, JetBrains AI Assistant/Junie) e a integração delas com o IntelliJ, modos de permissão e modo de planejamento
 - [ ] 10.5 ✅ Fluxo de trabalho com agentes: explorar → planejar → implementar → testar → revisar; TDD com IA; tarefas pequenas e commits frequentes; git worktrees
 - [ ] 10.6 ✅ **MCP na prática:** o que é (host, client, server), configurar servidores úteis (Angular CLI, GitHub, Playwright, banco de dados) e os riscos de cada um
 - [ ] 10.7 ✅ Personalizando o agente: skills, subagentes, comandos customizados, hooks (ex.: rodar lint e testes após cada edição) e plugins
