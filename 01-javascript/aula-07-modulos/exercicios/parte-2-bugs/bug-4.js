@@ -5,10 +5,10 @@
 // Conserte usando import (módulos ES). A mensagem de erro sugere renomear o
 // arquivo para .cjs: NÃO faça isso, porque o objetivo é usar a sintaxe atual.
 // Esperado depois do conserto: bug-4: Olá, Bia! Seu saldo é R$ 250,00
-// Causa:
+// Causa: O require é a sintaxe do CommomJS, o sistema antigo do Node. Em projetos com type module, ele nao existe, podemos fazer os dois imports virar um só
 // ============================================================
 
-const { formatarMoeda } = require("./utils.js");
-const saudar = require("./utils.js").default;
+import {formatarMoeda} from "./utils.js";
+import saudar from "./utils.js";
 
 console.log("bug-4:", `${saudar("Bia")} Seu saldo é ${formatarMoeda(250)}`);

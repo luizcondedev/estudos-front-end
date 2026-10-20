@@ -27,34 +27,35 @@
 //
 // Perguntas (responda depois de terminar):
 // P1) Por que o validarPreco NÃO deve ser exportado? Qual é o equivalente em Java?
-// Resposta:
+// Resposta: Porque o método vai ser usado apenas pela classe Produto, o equivalente em Java é o private
 // P2) O produto.js e o carrinho.js importam o formatarMoeda. Quantas vezes
 //     o formatacao.js é executado? Por quê? (Para conferir, coloque um
 //     console.log temporário no topo do formatacao.js e rode o main.js.)
-// Resposta:
+// Resposta: 1 vez só, todos recebem o mesmo modulo guardado em Cache
 // P3) Qual é a vantagem de o main.js importar do barrel (modelos/index.js)?
-// Resposta:
+// Resposta: Organização e Código mais limpo, nao ter que usar varias vezes o import para importar arquivos de dentro da mesma pasta
 // ============================================================
 
-// TODO: imports (o Produto e o Carrinho pelo barrel; o produtosIniciais pelo default)
+import {Produto, Carrinho} from "./modelos/index.js";
+import produtosIniciais from "./dados/produtos.js";
 
 // ---------- PROGRAMA PRINCIPAL ----------
 // Descomente quando os imports estiverem prontos. Não altere este trecho.
 
-// const [arroz, feijao, cafe] = produtosIniciais;
-//
-// const carrinho = new Carrinho();
-// carrinho.adicionar(arroz, 2);
-// carrinho.adicionar(feijao);
-// carrinho.adicionar(arroz);
-// carrinho.adicionar(cafe, 2);
-//
-// console.log("Produtos cadastrados:", Produto.total());
-// carrinho.itens.forEach(item => console.log(`- ${item.quantidade}x ${item.produto}`));
-// console.log("Total:", carrinho.totalFormatado);
-//
-// try {
-//   new Produto({ nome: "Inválido", preco: -1 });
-// } catch (e) {
-//   console.log("Erro esperado:", e.message);
-// }
+ const [arroz, feijao, cafe] = produtosIniciais;
+
+ const carrinho = new Carrinho();
+ carrinho.adicionar(arroz, 2);
+ carrinho.adicionar(feijao);
+ carrinho.adicionar(arroz);
+ carrinho.adicionar(cafe, 2);
+
+ console.log("Produtos cadastrados:", Produto.total());
+ carrinho.itens.forEach(item => console.log(`- ${item.quantidade}x ${item.produto}`));
+ console.log("Total:", carrinho.totalFormatado);
+
+ try {
+   new Produto({ nome: "Inválido", preco: -1 });
+ } catch (e) {
+   console.log("Erro esperado:", e.message);
+ }

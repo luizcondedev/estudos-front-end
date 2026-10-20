@@ -65,8 +65,8 @@ NN-nome-do-modulo/
 
 Atualize esta seção sempre que criar ou corrigir aulas.
 
-- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5), 1.6 (nota 9,5)
-- **Prontas, aguardando o aluno:** 1.7
+- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5), 1.6 (nota 9,5), 1.7 (nota 9). **Módulo 1 completo.**
+- **Prontas, aguardando o aluno:** nenhuma
 - **Próximas a criar:** Módulo 2, começando pela 2.1 (como a internet funciona)
 
 ### Pontos de atenção do aluno (reforçar nas próximas aulas e correções)
@@ -76,5 +76,5 @@ Atualize esta seção sempre que criar ou corrigir aulas.
 - **Hábitos do Java que não se aplicam ao JS:** getters para campos públicos (`getNome()`), construtores que só repassam para o `super`.
 - **`this`:** entendeu bem depois da explicação "olhe a linha em que a função é executada e veja o que está antes do ponto", mostrando um `forEach` simplificado que chama `callback(item)`. Reusar essa abordagem quando o tema voltar (classes no TS, componentes Angular).
 - **Validação:** lembrar que comparações com `undefined` dão `false` (buraco de validação) e que valores padrão não servem para dados obrigatórios.
-- **Responder o "por quê"** nos exercícios de explicação (deixou campos em branco na 1.4).
+- **Responder o "por quê"** nos exercícios de explicação, e responder **todas** as partes das perguntas (deixou campos em branco na 1.4 e na 1.7; na 1.7 também respondeu só metade de perguntas com duas partes).
 - Aprende melhor quando o raciocínio é montado em etapas (ex.: `for...of` → `reduce` mutável → `reduce` imutável) e com tabelas "volta a volta".

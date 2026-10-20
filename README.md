@@ -48,7 +48,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 - [x] 1.4 ✅ Escopo, hoisting, closures e `this`
 - [x] 1.5 ✅ Classes, herança e getters/setters (comparando com Java)
 - [x] 1.6 ✅ Tratamento de erros (`try/catch`, `throw`) e JSON (`JSON.parse`/`JSON.stringify`)
-- [ ] 1.7 ✅ Módulos ES (`import`/`export`)
+- [x] 1.7 ✅ Módulos ES (`import`/`export`)
 
 ## Módulo 2: Como a web funciona + ferramentas do dia a dia
 - [ ] 2.1 ✅ Como a internet funciona: HTTP/HTTPS, métodos e status codes, DNS, domínio, hospedagem
