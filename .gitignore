@@ -13,6 +13,7 @@ coverage/
 # Arquivos de teste rápido das aulas
 testes.js
 testes.ts
+testes-modulos/
 
 # Sistema e editor
 .idea/
