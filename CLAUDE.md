@@ -19,7 +19,8 @@ Até a aula 2.2, o curso era voltado ao Angular. O aluno pediu para trocar, e a 
 
 ## Regras pedagógicas (obrigatórias)
 
-1. **Nunca use um conceito sem antes explicá-lo.** Se um exemplo usa destructuring, spread, ternário, arrow function etc., esse conceito já precisa ter sido ensinado numa aula anterior ou ser explicado ali mesmo. O aluno reclamou explicitamente quando isso não aconteceu.
+1. **Nunca use um conceito sem antes explicá-lo.** Se um exemplo usa destructuring, spread, ternário, arrow function etc., esse conceito já precisa ter sido ensinado numa aula anterior ou ser explicado ali mesmo. O aluno reclamou explicitamente quando isso não aconteceu (na 1.2, e de novo na 2.3, com cookies e `localStorage`). A regra vale para **tudo**: o texto da aula, os exemplos, os exercícios, as dicas e os arquivos de apoio (como o site dos exercícios). Uma citação de passagem ("o cookie da aula 2.2") **não conta** como explicação: o conceito precisa ser explicado no formato da regra 3.
+   - **HTML e CSS antes do Módulo 3:** o aluno ainda não revisou HTML e CSS. Toda aula anterior ao Módulo 3 que usar tags, atributos, seletores ou propriedades de CSS precisa explicar o mínimo necessário (modelo: a seção 0 da aula 2.3).
 2. **Relacione tudo o que for possível com Java** (pedido explícito do aluno): o equivalente em Java, as diferenças e as armadilhas para quem vem do Java. Use blocos `> ☕` para essas comparações. No React e no Next.js, compare também com o **Spring** (ex.: Server Actions e Route Handlers x `@RestController`, Zod x Bean Validation, Context x injeção de dependência, BFF x API Gateway).
 3. Para cada conceito, explique: **o que é → para que serve → como funciona, passo a passo → exemplo → armadilhas.**
 4. Sempre que fizer sentido, diga **onde aquilo aparece no React e no Next.js**, para o aluno ver a utilidade.
@@ -27,6 +28,12 @@ Até a aula 2.2, o curso era voltado ao Angular. O aluno pediu para trocar, e a 
 6. **Aulas de IA (2.8 e Módulos 10 e 11):** é a área que muda mais rápido. Pesquise o estado atual (versões do Spring AI, do MCP, do AI SDK da Vercel, das ferramentas) antes de escrever. Cubra o lado do back (Java/Spring AI) **e** o do front (React/Next.js, AI SDK, MCP do shadcn/ui), e apresente as ferramentas de forma neutra (Claude Code, Copilot, Cursor...). O Módulo 10 pode ser feito em paralelo a partir do Módulo 5.
 7. **React e Next.js mudam rápido.** Antes de criar uma aula dos Módulos 7 a 9, confira na documentação oficial ([react.dev](https://react.dev), [nextjs.org/docs](https://nextjs.org/docs), [ui.shadcn.com](https://ui.shadcn.com)) se as APIs ainda são as mesmas. Ensine só o padrão atual (componentes de função, App Router, Cache Components) e mostre o padrão antigo apenas para o aluno reconhecer em código legado (componentes de classe, Pages Router, Create React App).
 8. Nível de profundidade: seguir as marcações do README (✅ essencial = a fundo; 🔍 conhecer = visão geral, quando usar, onde consultar).
+9. **Calibre o tamanho da aula pela importância do assunto.** Em 22/10/2026, o aluno avisou que estava demorando demais para terminar as aulas e os exercícios, por causa de conceitos densos demais. Antes de escrever, classifique a aula e indique a classificação no topo dela, com o tempo estimado (modelo: o aviso ⏱️ da aula 2.4).
+   - **Completa** (o formato das aulas 1.2 a 2.3): só para os conceitos que são a base do que vem depois, que o aluno vai usar escrevendo código todo dia, e que têm armadilhas ou não têm equivalente direto no Java. Exemplos: closures e `this`, assincronismo (4.4), DOM e eventos, os tipos do TypeScript, estado e efeitos do React, Server x Client Components, o cache do Next.js e autenticação. Mesmo nelas, corte o que o curso não vai usar e limite a lista a cerca de 8 exercícios (o resto vira 🔍 opcional).
+   - **Enxuta** (modelo: a aula 2.4): para ferramentas que se aprendem usando, assuntos com equivalente direto no Java (npm ≈ Maven) e as aulas 🔍. Limites: cerca de 30 minutos de leitura e de 4 a 6 exercícios práticos e curtos (cerca de 45 minutos), com perguntas de resposta curta. Cada conceito em poucos parágrafos, com o ☕ e a armadilha principal. Ensine só o que o aluno vai usar de verdade, e deixe o resto de fora ou numa linha 🔍.
+   - Uma aula enxuta tem **menos conceitos**, e não conceitos mal explicados: a regra 1 continua valendo.
+   - Na dúvida, prefira a enxuta: o aprofundamento pode vir quando o assunto voltar num projeto.
+   - Sugestão para o resto do Módulo 2 (reavalie na hora): 2.5 (ESLint e Prettier), 2.6 (Git; pergunte quanto o aluno já usa no Java) e 2.8 enxutas; 2.7 (Vite) completa, mas curta.
 
 ## Estrutura de arquivos
 
@@ -45,7 +52,7 @@ NN-nome-do-modulo/
 
 ## Como criar uma aula
 
-1. Confira no `README.md` o tópico e o nível (✅/🔍) da aula. Pesquise a versão atual quando for algo que muda rápido (React, Next.js, shadcn/ui, TypeScript, ferramentas). As versões-alvo estão no README.
+1. Confira no `README.md` o tópico e o nível (✅/🔍) da aula, e **classifique-a como completa ou enxuta** (regra 9). Pesquise a versão atual quando for algo que muda rápido (React, Next.js, shadcn/ui, TypeScript, ferramentas). As versões-alvo estão no README.
 2. Escreva o `aula.md` seguindo as regras pedagógicas acima. Modelo de referência: `01-javascript/aula-02-objetos-spread-destructuring/aula.md`.
 3. Escreva os exercícios:
    - Comentário no topo (ou instruções no README da pasta) dizendo como rodar.
@@ -54,6 +61,7 @@ NN-nome-do-modulo/
    - Quando houver dados compartilhados, inclua no final uma verificação automática de mutação.
    - Só use conceitos já ensinados até aquela aula. **Antes de entregar, liste toda sintaxe, operador e método usado nos exercícios (inclusive nas dicas e nos testes prontos) e confira se cada um foi explicado.** Na aula 1.2, o desafio 12 exigia `??` e `reduce` com acumulador objeto sem ter ensinado, e o aluno não conseguiu resolver.
 4. **Teste antes de entregar:** rode os exercícios (precisam executar sem erro com os TODOs vazios) e confira os resultados esperados escrevendo uma solução de referência **fora do repositório** (no scratchpad). Nunca deixe soluções no repositório. Em projetos React/Next, rode também o `npm run build` e o lint da solução de referência.
+   - O `npm` e o `npx` falham no caminho longo do scratchpad (erro "O nome do diretório é inválido"). Use uma pasta curta, como `$env:TEMP\claude-aulas\aula-X.Y`, e rode o npm pelo PowerShell (no Git Bash, ele dá "Could not determine Node.js install directory").
 5. Não marque a aula como concluída no README: isso só acontece depois da correção.
 
 ## Como corrigir uma aula ("corrige a aula X.Y")
@@ -76,8 +84,11 @@ NN-nome-do-modulo/
 Atualize esta seção sempre que criar ou corrigir aulas.
 
 - **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5), 1.6 (nota 9,5), 1.7 (nota 9). **Módulo 1 completo.** 2.1 (só leitura, marcada pelo próprio aluno), 2.2 (nota 7,5: o PATCH tinha um bug de sombreamento de variável e várias respostas ficaram em branco; o aluno consertou o PATCH logo depois da correção, e os testes E7.1 a E7.4 passaram).
-- **Prontas, aguardando o aluno:** nenhuma
-- **Próximas a criar:** 2.3 (como o navegador funciona + DevTools)
+- **Prontas, aguardando o aluno:** 2.3 (completa) e 2.4 (enxuta)
+- **Próximas a criar:** 2.5 (ESLint e Prettier, enxuta)
+- **Aula 2.4:** as respostas ficam no `exercicios/exercicios.md`, e o aluno cria o projeto em `exercicios/meu-projeto/` (a `node_modules` fica de fora do Git). Para corrigir, confira no `meu-projeto/package.json`: `"type": "module"`, o chalk `^6.x` em `dependencies`, o prettier em `devDependencies` e os scripts `start` e `formatar`. Confira também o `feio.js` formatado e a linha do nome em amarelo e negrito no `index.js`. Para rodar, copie a pasta (sem a `node_modules`) para `$env:TEMP\claude-aulas\`, e rode `npm ci` e `npm start` lá. Valores esperados (em 22/10/2026): o `chalk@4.1.0` instala 6 pacotes; o `npm outdated` mostra 4.1.0 / 4.1.2 / 6.0.1; subir para a 6 remove 5 pacotes, porque o chalk 5+ não tem dependências. A Latest pode ter mudado desde então.
+- **Versões:** em 22/10/2026, o npm já tem o **TypeScript 7.0** (o README diz TS 6, e o `create-next-app` 16.4 ainda usa `"typescript": "^5"`). Revise as versões-alvo antes do Módulo 5.
+- **Aula 2.3:** as respostas ficam no `exercicios/exercicios.md`. Depois da regra 9, os exercícios 1, 3, 4, 8 e 10 viraram opcionais (🔍); os obrigatórios são 2, 5, 6, 7 e 9. Não tire nota pelos opcionais em branco. O site da Lojinha tem dois bugs de propósito: (1) o `<script>` no `<head>` sem `defer` (erro `Cannot set properties of null` no `app.js:13`) e (2) o `app.js` lê `json.produtos`, mas a API devolve `{ dados, total }` (erro `produtos is not iterable` no `app.js:25`). Os consertos esperados são `defer` no `index.html` e `json.dados` no `app.js`. Para corrigir: suba o `servidor.js` (porta 3001) em segundo plano, abra `http://localhost:3001` no navegador embutido, leia o Console e confira se os 4 produtos aparecem e se o `document.cookie` mostra só o `visitante`; pare o processo na porta 3001 no final.
 - **Aula 2.2:** as respostas ficam no `exercicios/exercicios.md`, e o código no `exercicios/servidor.js` (DELETE e PATCH). Para corrigir: suba o servidor em segundo plano, teste as rotas com `curl.exe` (corpos com acento via arquivo `--data-binary @arquivo.json`, porque o terminal corrompe o UTF-8) e pare o processo na porta 3000 no final.
 - **Roadmap reorganizado em 22/10/2026** para React + Next.js. Mudanças além dos Módulos 7 a 9: 2.7 (Vite) virou ✅; 3.10 virou Tailwind ✅ (base do shadcn/ui) e o Sass foi para 🔍 (3.11); 5.13 (Zod) é nova, e as aulas 5.14 e 5.15 foram renumeradas; o Módulo 11 ganhou a 11.10 (onde chamar a IA: Spring ou Next.js); o projeto final é em Next.js, com o bônus 12.5 (interface do plugin do SketchUp).
 
