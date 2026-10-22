@@ -75,7 +75,7 @@ NN-nome-do-modulo/
 
 Atualize esta seção sempre que criar ou corrigir aulas.
 
-- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5), 1.6 (nota 9,5), 1.7 (nota 9). **Módulo 1 completo.** 2.1 (só leitura, marcada pelo próprio aluno), 2.2 (nota 7,5: o PATCH tinha um bug de sombreamento de variável e várias respostas ficaram em branco).
+- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5), 1.6 (nota 9,5), 1.7 (nota 9). **Módulo 1 completo.** 2.1 (só leitura, marcada pelo próprio aluno), 2.2 (nota 7,5: o PATCH tinha um bug de sombreamento de variável e várias respostas ficaram em branco; o aluno consertou o PATCH logo depois da correção, e os testes E7.1 a E7.4 passaram).
 - **Prontas, aguardando o aluno:** nenhuma
 - **Próximas a criar:** 2.3 (como o navegador funciona + DevTools)
 - **Aula 2.2:** as respostas ficam no `exercicios/exercicios.md`, e o código no `exercicios/servidor.js` (DELETE e PATCH). Para corrigir: suba o servidor em segundo plano, teste as rotas com `curl.exe` (corpos com acento via arquivo `--data-binary @arquivo.json`, porque o terminal corrompe o UTF-8) e pare o processo na porta 3000 no final.
