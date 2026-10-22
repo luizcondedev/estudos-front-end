@@ -2,7 +2,7 @@
 
 > **Boa notícia:** esta é a aula em que o seu Java mais ajuda. A sintaxe de classes do JavaScript foi claramente inspirada em linguagens como Java. Mas existem **diferenças importantes**, e é nelas que esta aula vai focar.
 >
-> **Por que importa para o Angular?** Todo componente, service, pipe, diretiva e guard do Angular é uma **classe**.
+> **Por que importa, se no React os componentes são funções?** Porque as classes continuam aparecendo: em código de regras de negócio, em bibliotecas, nos erros customizados (aula 1.6), no TypeScript (Módulo 5) e em todo código React antigo (os componentes de classe). E entender classes ajuda a entender **por que** o React preferiu as funções.
 
 **Como rodar os exemplos:** crie um `testes.js` nesta pasta e rode `node testes.js`.
 
@@ -85,12 +85,11 @@ console.log(c.itens.length); // 1
 
 > ☕ Equivale a `private List<Produto> itens = new ArrayList<>();` no Java. E, assim como no Java, cada `new Carrinho()` recebe uma lista nova.
 
-**Esse é o estilo que você vai ver no Angular:**
+**Esse é o estilo dos componentes de classe do React antigo** (aula 7.13), que você ainda vai encontrar em código legado:
 
-```typescript
-export class ProdutosComponent {
-  produtos = signal([]);        // campo
-  carregando = signal(false);   // campo
+```jsx
+class ListaProdutos extends React.Component {
+  state = { produtos: [], carregando: false };   // campo com valor inicial
 }
 ```
 
@@ -194,7 +193,7 @@ console.log(conta.saldo);            // undefined (#saldo e saldo são campos DI
 
 > ☕ `#saldo` é o `private double saldo` do Java. A diferença é que o `#` faz **parte do nome** do campo: você sempre escreve `this.#saldo`.
 
-> 💡 **Spoiler do TypeScript:** no TS (e portanto no Angular), você também vai ter `private`, `protected`, `public` e `readonly`, iguais aos do Java. Mas o `#` é o privado "de verdade" do JavaScript: ele continua privado até em tempo de execução.
+> 💡 **Spoiler do TypeScript:** no TS, você também vai ter `private`, `protected`, `public` e `readonly`, iguais aos do Java. Mas o `#` é o privado "de verdade" do JavaScript: ele continua privado até em tempo de execução.
 
 ### 4.3 Prévia: lançando e capturando erros
 
@@ -369,7 +368,7 @@ class Forma {
 }
 ```
 
-> 💡 **Prefira composição a herança.** Isso vale no Java e vale ainda mais no Angular: em vez de hierarquias de classes, o Angular usa **injeção de dependência** (services injetados nos componentes). Herança aparece pouco no dia a dia.
+> 💡 **Prefira composição a herança.** Isso vale no Java e vale ainda mais no React: em vez de criar hierarquias de componentes, você **compõe** componentes pequenos, um dentro do outro (aula 7.7). Herança praticamente não aparece no React moderno.
 
 ---
 
@@ -420,7 +419,7 @@ Por baixo dos panos, o JS não tem classes como o Java. Ele tem **protótipos**:
 typeof Produto; // "function" (uma classe é, tecnicamente, uma função especial)
 ```
 
-Você **não precisa** dominar protótipos para trabalhar com Angular, mas vai ouvir o termo em entrevistas. Basta saber:
+Você **não precisa** dominar protótipos para trabalhar com React, mas vai ouvir o termo em entrevistas. Basta saber:
 - Métodos de classe ficam no **protótipo** (compartilhados entre instâncias, como os métodos em Java).
 - Campos ficam em **cada instância**.
 
@@ -452,10 +451,10 @@ Em Java, **tudo** precisa de uma classe. Em JS, não:
 |---|---|
 | Dados simples (ex.: um produto vindo da API) | **Objeto literal** `{ nome, preco }` |
 | Algo com comportamento + estado encapsulado | **Classe** |
-| No Angular: componentes, services, pipes, diretivas | **Classe** (obrigatório) |
-| No Angular: modelos de dados (Produto, Usuario...) | **Objeto literal** tipado com `interface` do TypeScript |
+| No React: componentes | **Função** (as classes são o jeito antigo) |
+| No React: modelos de dados (Produto, Usuario...) | **Objeto literal** tipado com `interface` do TypeScript |
 
-> ☕ **Isso é muito diferente do Java!** No Java, o `Produto` que vem da API vira uma classe/DTO/record. No Angular, o padrão é usar **objetos simples** descritos por uma `interface` do TS (que nem existe em tempo de execução). Você vai ver isso no Módulo 5.
+> ☕ **Isso é muito diferente do Java!** No Java, o `Produto` que vem da API vira uma classe/DTO/record. No React, o padrão é usar **objetos simples** descritos por uma `interface` do TS (que nem existe em tempo de execução). Você vai ver isso no Módulo 5.
 
 ---
 

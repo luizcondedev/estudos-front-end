@@ -1,8 +1,8 @@
 # Aula 02: Objetos, valor x referência, imutabilidade, spread, rest e destructuring
 
-> **Por que esta aula é tão importante?** Quase todo código Angular moderno faz isto aqui:
+> **Por que esta aula é tão importante?** Quase todo código React faz isto aqui:
 > ```javascript
-> this.produtos.update(lista => lista.map(p => p.id === id ? { ...p, preco: novoPreco } : p));
+> setProdutos(lista => lista.map(p => p.id === id ? { ...p, preco: novoPreco } : p));
 > ```
 > Ao final desta aula você vai entender **cada caractere** dessa linha.
 
@@ -231,18 +231,18 @@ console.log(batata.preco);         // 5 😱 o original também mudou!
 
 Como a função recebeu a **referência**, ela alterou o objeto de quem chamou. Em um sistema grande, você passa horas procurando "quem mudou esse valor?".
 
-### 3.3 Por que o Angular se importa tanto com isso?
+### 3.3 Por que o React se importa tanto com isso?
 
-O Angular precisa saber **quando algo mudou** para atualizar a tela. A forma mais rápida de checar é com `===`:
+O React precisa saber **quando algo mudou** para atualizar a tela. A forma mais rápida de checar é comparar a referência antiga com a nova, como um `===`:
 
 ```javascript
 listaAntiga === listaNova
 ```
 
-- Se você **mutou** a lista (`push`), ela continua sendo **o mesmo objeto**, então `===` dá `true` e o Angular pode concluir que **nada mudou** e não atualizar a tela. 🐛
-- Se você **criou uma lista nova**, `===` dá `false` e o Angular sabe que precisa atualizar. ✅
+- Se você **mutou** a lista (`push`), ela continua sendo **o mesmo objeto**, então `===` dá `true` e o React conclui que **nada mudou** e não atualiza a tela. 🐛
+- Se você **criou uma lista nova**, `===` dá `false` e o React sabe que precisa atualizar. ✅
 
-Por isso, em Angular (principalmente com **Signals** e `OnPush`, que vamos ver), a regra é: **não mute, crie um novo**.
+Por isso, no React (com o `useState`, que você vai ver na aula 7.6), a regra é: **não mute, crie um novo**. É a regra mais importante do React, e é exatamente o assunto desta aula.
 
 ### 3.4 Como criar um objeto novo? (passo a passo)
 
@@ -362,7 +362,7 @@ Math.max(...precos);  // 15.99 ✅ (vira Math.max(8, 13.99, 15.99))
 
 ### 4.4 As operações imutáveis mais usadas com listas
 
-Decore estas quatro: elas aparecem em todo projeto Angular.
+Decore estas quatro: elas aparecem em todo projeto React.
 
 ```javascript
 const produtos = [
@@ -685,13 +685,13 @@ const aplicarDesconto = (produto, desconto) => {
 E a linha do começo da aula:
 
 ```javascript
-this.produtos.update(lista => lista.map(p => p.id === id ? { ...p, preco: novoPreco } : p));
-//            │        │         │       │                  │                          └─ senão, mantém o mesmo
-//            │        │         │       │                  └─ se for, cria uma cópia com o preço novo
-//            │        │         │       └─ para cada produto, verifica se é o que queremos alterar
-//            │        │         └─ map: monta um array NOVO
-//            │        └─ recebe a lista atual
-//            └─ (Angular Signals, aula 21) troca a lista pela nova → a tela atualiza
+setProdutos(lista => lista.map(p => p.id === id ? { ...p, preco: novoPreco } : p));
+//  │         │         │       │                  │                          └─ senão, mantém o mesmo
+//  │         │         │       │                  └─ se for, cria uma cópia com o preço novo
+//  │         │         │       └─ para cada produto, verifica se é o que queremos alterar
+//  │         │         └─ map: monta um array NOVO
+//  │         └─ recebe a lista atual
+//  └─ (React, aula 7.6) troca a lista pela nova → a tela atualiza
 ```
 
 ---
@@ -764,7 +764,7 @@ console.log(totalPorCategoria); // { GRAOS: 24, VERDURA: 8 }
 **Regras de ouro:**
 1. Objetos e arrays são passados por **referência**, como em Java.
 2. `const` impede **reatribuir** a variável, não impede **mudar o conteúdo** do objeto.
-3. No Angular, **não mute**: crie objetos e arrays novos.
+3. No React, **não mute**: crie objetos e arrays novos.
 4. Spread primeiro, sobrescritas depois.
 5. Spread é **raso**: objetos aninhados precisam de spread próprio (ou `structuredClone`).
 

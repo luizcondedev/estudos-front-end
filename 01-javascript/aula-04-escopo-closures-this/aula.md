@@ -1,6 +1,6 @@
 # Aula 1.4: Escopo, hoisting, closures e `this`
 
-> **Por que esta aula importa?** Esses quatro conceitos explicam a maioria dos bugs "misteriosos" de JavaScript e aparecem em **toda entrevista** de front-end. E no Angular, o `this` está em todo componente: entender quando ele "se perde" evita horas de depuração.
+> **Por que esta aula importa?** Esses quatro conceitos explicam a maioria dos bugs "misteriosos" de JavaScript e aparecem em **toda entrevista** de front-end. No React, quase tudo é feito com funções e closures, e entender closures é o que evita um dos bugs mais famosos do React. Já o `this` aparece em toda classe (aula 1.5) e em todo código antigo de React, e entender quando ele "se perde" evita horas de depuração.
 
 **Como rodar os exemplos:** crie um `testes.js` nesta pasta e rode `node testes.js`.
 
@@ -297,7 +297,7 @@ function produtosAcimaDe(lista, valorMinimo) {
 }
 ```
 
-No Angular, closures aparecem o tempo todo: em callbacks, em `computed(() => ...)`, em funções de guard de rota, em interceptors...
+No React, closures aparecem o tempo todo: todo *event handler* (a função que roda num clique) e todo `useEffect` é uma closure que "lembra" os valores da renderização em que foi criado (aulas 7.6 e 7.9).
 
 ---
 
@@ -403,23 +403,40 @@ Também existem `call` e `apply`, que chamam a função na hora com um `this` es
 produto.descrever.call({ nome: "Cenoura" }); // "Produto: Cenoura"
 ```
 
-### 4.6 E no Angular?
+### 4.6 E no React?
 
-Componentes e services do Angular são **classes**, e você vai usar `this` o tempo todo:
+**Boa notícia: no React moderno, os componentes são funções, e não usam `this`.** Os dados ficam em variáveis e closures:
 
-```typescript
-export class ProdutosComponent {
-  produtos = signal<Produto[]>([]);
+```jsx
+function Contador() {
+  const [valor, setValor] = useState(0);   // aula 7.6
 
-  carregar() {
-    this.api.listar().subscribe(lista => {
-      this.produtos.set(lista);   // ✅ arrow function: o this é o componente
-    });
+  function aumentar() {                    // closure: "lembra" o valor desta renderização
+    setValor(valor + 1);
+  }
+
+  return <button onClick={aumentar}>Cliques: {valor}</button>;
+}
+```
+
+O `this` era um problema clássico nos **componentes de classe**, a forma antiga de escrever React, que você ainda vai encontrar em código legado (aula 7.13):
+
+```jsx
+class Contador extends React.Component {
+  state = { valor: 0 };
+
+  aumentar() {
+    this.setState({ valor: this.state.valor + 1 });  // 💥 this é undefined aqui
+  }
+
+  render() {
+    return <button onClick={this.aumentar}>Cliques</button>;
+    //                     ↑ passa a função SOLTA para o React chamar depois: o this se perde
   }
 }
 ```
 
-Se você trocasse a arrow function por `function (lista) { ... }`, o `this` se perderia e o código quebraria. Agora você sabe por quê. 🎯
+É **exatamente** o bug da seção 4.3: o método é entregue como callback, e quem o executa (o React, no clique) não coloca nada antes do ponto. A solução, na época, era escrever o método como arrow function (`aumentar = () => { ... }`) ou usar o `bind` (seção 4.5). Esse foi um dos motivos pelos quais o React passou a recomendar componentes de função. Agora você sabe por quê. 🎯
 
 ---
 

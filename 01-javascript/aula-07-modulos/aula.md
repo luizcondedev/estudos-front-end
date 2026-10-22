@@ -1,9 +1,9 @@
 # Aula 1.7: Módulos ES (`import` e `export`)
 
-> **Por que esta aula importa?** Até agora, cada exercício coube num arquivo só. Um projeto Angular real tem **centenas** de arquivos: cada componente, service e modelo fica no seu. E a **primeira coisa** que você vai ver em praticamente todo arquivo Angular é isto:
+> **Por que esta aula importa?** Até agora, cada exercício coube num arquivo só. Um projeto React real tem **centenas** de arquivos: cada componente, hook e modelo fica no seu. E a **primeira coisa** que você vai ver em praticamente todo arquivo React é isto:
 > ```typescript
-> import { Component, signal } from '@angular/core';
-> import { ProdutoService } from './produto.service';
+> import { useState } from "react";
+> import { CardProduto } from "./CardProduto";
 > ```
 > Esta aula ensina como os arquivos conversam entre si. É a última aula do Módulo 1.
 
@@ -148,14 +148,14 @@ console.log(formatarMoeda(1500)); // "R$ 1.500,00"
 | `"./formatacao.js"` | Na **mesma pasta** do arquivo atual |
 | `"./utils/formatacao.js"` | Na subpasta `utils` |
 | `"../formatacao.js"` | Na pasta **de cima** (`..` = pasta pai) |
-| `"@angular/core"` | Sem `./` ou `../`: uma **biblioteca** instalada pelo npm (seção 9) |
+| `"react"`, `"@tanstack/react-query"` | Sem `./` ou `../`: uma **biblioteca** instalada pelo npm (seção 9) |
 
 > ⚠️ **A extensão `.js` é obrigatória** no Node e no navegador. Sem ela, o Node não encontra o arquivo:
 > ```
 > Error [ERR_MODULE_NOT_FOUND]: Cannot find module '...\formatacao' imported from ...\main.js
 > Did you mean to import "./formatacao.js"?
 > ```
-> No Angular (e em projetos TypeScript em geral), você vai ver imports **sem** extensão (`'./produto.service'`), porque lá a ferramenta de build resolve isso. Em JS puro, sempre coloque o `.js`.
+> Em projetos React com o Vite, no Next.js e em projetos TypeScript em geral, você vai ver imports **sem** extensão (`"./CardProduto"`), porque lá a ferramenta de build resolve isso. Em JS puro, sempre coloque o `.js`.
 
 ### 4.4 Renomeando com `as`
 
@@ -236,9 +236,9 @@ formatarMoeda(1500);                    // "Olá, 1500!" 😱 nenhum erro, só u
 
 ### 5.3 Nomeado ou default?
 
-**Prefira o export nomeado.** É o padrão da comunidade Angular e TypeScript: o nome é sempre o mesmo em todo o projeto, o editor consegue completar e renomear automaticamente, e erros de digitação viram erros de verdade, e não bugs silenciosos.
+**Prefira o export nomeado.** É o padrão recomendado pela comunidade TypeScript: o nome é sempre o mesmo em todo o projeto, o editor consegue completar e renomear automaticamente, e erros de digitação viram erros de verdade, e não bugs silenciosos.
 
-O default ainda aparece bastante (em bibliotecas e em alguns frameworks), então você precisa saber ler e usar.
+O default ainda aparece bastante, então você precisa saber ler e usar. E existe uma exceção importante: no **Next.js**, os arquivos de página e de layout (`page.tsx`, `layout.tsx`) **precisam** usar `export default`, porque é assim que o framework encontra o componente principal de cada rota (aula 9.2).
 
 ---
 
@@ -280,7 +280,7 @@ import { Produto, Carrinho } from "./modelos/index.js";
 
 Esse arquivo que só reexporta é chamado de **barrel** ("barril"). Também existe a forma `export * from "./produto.js";`, que reexporta todos os exports nomeados de uma vez.
 
-> ☕ Não existe um equivalente direto em Java. A ideia é parecida com uma **fachada** (*facade*) para um pacote: quem usa não precisa conhecer a organização interna das pastas. As bibliotecas do Angular usam muito isso (o famoso `public-api.ts`).
+> ☕ Não existe um equivalente direto em Java. A ideia é parecida com uma **fachada** (*facade*) para um pacote: quem usa não precisa conhecer a organização interna das pastas. Bibliotecas de componentes usam muito isso: um único arquivo de entrada que reexporta tudo o que a biblioteca oferece.
 
 ---
 
@@ -332,7 +332,7 @@ contador.js carregado     ← uma vez só, apesar de três imports
 
 > ☕ É parecido com um **campo `static`** em Java (existe uma única vez por classe carregada, e o bloco `static { }` roda uma única vez) ou com um **bean singleton** do Spring: todos que pedem recebem a mesma instância.
 
-> 💡 No Angular, os **services** com `providedIn: 'root'` têm esse mesmo comportamento de "uma instância compartilhada por toda a aplicação", mas por outro mecanismo: a injeção de dependência (aula 8.1).
+> 💡 No React, bibliotecas de estado global como o **Zustand** (aula 8.5) usam exatamente esse comportamento: a "store" é criada num módulo, e todo componente que a importa recebe a **mesma** store.
 
 ### 8.4 Imports são somente leitura
 
@@ -370,7 +370,7 @@ import { naoExiste } from "./formatacao.js";
 
 > ☕ Isso é o mais perto que o JS puro chega de um **erro de compilação** do Java: o erro aparece antes de rodar, e não no meio da execução.
 
-> 🔍 **Para conhecer:** existe também o `import()` como **função**, que carrega um módulo sob demanda, no meio do código. Ele é a base do *lazy loading* de rotas do Angular (aula 8.3), que só baixa o código de uma página quando o usuário entra nela. Como ele é assíncrono, você vai entendê-lo depois do Módulo 4.
+> 🔍 **Para conhecer:** existe também o `import()` como **função**, que carrega um módulo sob demanda, no meio do código. Ele é a base do `lazy` do React (aula 8.8), que só baixa o código de uma tela quando o usuário entra nela, e o Next.js faz isso automaticamente para cada rota. Como ele é assíncrono, você vai entendê-lo depois do Módulo 4.
 
 ---
 
@@ -379,8 +379,8 @@ import { naoExiste } from "./formatacao.js";
 Quando o caminho **não** começa com `./`, `../` ou `/`, o JS entende que é uma **biblioteca** instalada pelo npm, que fica na pasta `node_modules`:
 
 ```javascript
-import { Component, signal } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 ```
 
 > ☕ É o equivalente às dependências do `pom.xml`: você declara a biblioteca, o Maven baixa, e você importa as classes dela. No JS, quem baixa é o npm (aula 2.4).
@@ -413,39 +413,40 @@ ReferenceError: require is not defined in ES module scope, you can use import in
 
 ## 11. Organizando um projeto em módulos
 
-Algumas regras práticas, que você vai ver no Angular:
+Algumas regras práticas, que você vai ver no React e no Next.js:
 
-- **Uma "coisa" principal por arquivo:** uma classe, um service, um componente. É a mesma regra do Java (uma classe pública por arquivo).
+- **Uma "coisa" principal por arquivo:** um componente, um hook, uma classe. É a mesma regra do Java (uma classe pública por arquivo).
 - **Pastas por funcionalidade** (`produtos/`, `carrinho/`, `auth/`) em vez de pastas por tipo técnico, quando o projeto cresce.
 - **Exporte só o necessário.** Funções auxiliares internas ficam sem `export`, como um método `private`.
 - **Evite dependências circulares** (A importa B, que importa A). Em Java elas funcionam sem problema; em JS podem causar erros difíceis de entender, como acessar uma classe antes de ela estar pronta (lembra da TDZ, aula 1.4?).
 
 ---
 
-## 12. E no Angular?
+## 12. E no React?
 
-Um componente Angular típico usa tudo desta aula:
+Um componente React típico usa tudo desta aula:
 
-```typescript
-import { Component, signal } from '@angular/core';      // biblioteca (npm)
-import { ProdutoService } from './produto.service';      // arquivo do projeto
-import { CardProdutoComponent } from './card-produto';   // outro componente
+```tsx
+import { useState } from "react";                   // biblioteca (npm)
+import { Button } from "@/components/ui/button";    // componente do shadcn/ui (aula 8.7)
+import { CardProduto } from "./CardProduto";        // outro componente do projeto
+import type { Produto } from "./tipos";             // só um tipo (TypeScript, Módulo 5)
 
-@Component({
-  selector: 'app-lista-produtos',
-  imports: [CardProdutoComponent],   // ⚠️ isto NÃO é o import de módulo!
-  templateUrl: './lista-produtos.html',
-})
-export class ListaProdutosComponent {   // export nomeado: outros arquivos podem importar
-  // ...
+export function ListaProdutos({ produtos }: { produtos: Produto[] }) {   // export nomeado
+  const [selecionado, setSelecionado] = useState<number | null>(null);
+
+  return (
+    <div>
+      {produtos.map(p => <CardProduto key={p.id} produto={p} />)}
+      <Button onClick={() => setSelecionado(null)}>Limpar</Button>
+    </div>
+  );
 }
 ```
 
-> ⚠️ **Não confunda os dois "imports":**
-> - O `import ... from` no topo do arquivo é o **módulo ES** desta aula: traz o código de outro arquivo.
-> - O `imports: [...]` dentro do `@Component` é uma configuração **do Angular**: diz quais componentes o template (o HTML) desse componente pode usar.
->
-> Para usar um componente no template, você precisa dos **dois**: importar o arquivo no topo **e** colocá-lo na lista `imports`.
+- O **`@/`** no começo do caminho é um **atalho** configurado no projeto para a pasta principal do código (normalmente a `src`). Ele evita caminhos longos como `"../../../components/ui/button"`. Os projetos criados com o shadcn/ui e com o `create-next-app` já vêm com esse atalho.
+- O **`import type`** traz só um **tipo** do TypeScript: nada disso existe quando o código roda (você vai entender no Módulo 5).
+- Para usar um componente, basta importá-lo e escrevê-lo como uma "tag" (`<CardProduto />`). Diferente do Angular, não existe uma segunda lista de configuração para registrar os componentes.
 
 ---
 
@@ -471,7 +472,7 @@ export class ListaProdutosComponent {   // export nomeado: outros arquivos podem
 3. Prefira **export nomeado**; cuidado com o default importado com o nome errado.
 4. Um módulo roda **uma vez só**, e o estado dele é compartilhado por todos que o importam.
 5. Imports são somente leitura, mas objetos importados podem ser alterados (evite).
-6. O `import` de módulo e o `imports: []` do Angular são coisas diferentes.
+6. No Next.js, páginas e layouts **exigem** `export default`: é a exceção à regra 3.
 
 ---
 

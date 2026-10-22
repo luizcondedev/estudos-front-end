@@ -2,7 +2,7 @@
 
 > **Por que esta aula importa?** Num sistema FullStack, o front e o back conversam o tempo todo, e essa conversa **pode falhar**: a API cai, o usuário digita algo inválido, a resposta vem num formato inesperado. Esta aula ensina as duas ferramentas para lidar com isso:
 > 1. **Tratamento de erros**: como lançar, capturar e organizar erros sem esconder bugs.
-> 2. **JSON**: o formato de texto em que o seu back-end Spring e o seu front Angular trocam dados.
+> 2. **JSON**: o formato de texto em que o seu back-end Spring e o seu front React trocam dados.
 
 **Como rodar os exemplos:** crie um `testes.js` nesta pasta e rode `node testes.js`.
 
@@ -394,12 +394,14 @@ function validarPreco(preco) {
 
 ---
 
-## 9. E no Angular?
+## 9. E no React?
 
 Você vai tratar erros principalmente na comunicação com a API:
 
-- O `HttpClient` do Angular transforma respostas de erro do servidor (404, 500...) num objeto de erro próprio, o `HttpErrorResponse`, que você captura e trata (aula 8.6).
-- **Interceptors** (aula 8.7) centralizam o tratamento: por exemplo, redirecionar para o login sempre que a API responder 401.
+- ⚠️ O `fetch` (aula 4.5) **não** lança erro quando a API responde 404 ou 500: você precisa conferir o status e lançar o erro você mesmo (`if (!resposta.ok) throw new Error(...)`). É exatamente o `throw` desta aula.
+- O **TanStack Query** (aula 8.3) captura esses erros e entrega para o componente um estado de erro pronto para mostrar na tela.
+- Uma função que "embrulha" o `fetch` (aula 8.6) centraliza o tratamento: por exemplo, mandar o usuário para o login sempre que a API responder 401.
+- Os **Error Boundaries** (aula 8.8), e no Next.js o arquivo `error.tsx` (aula 9.2), funcionam como um `try/catch` para a tela: se um componente lançar um erro, eles mostram uma mensagem amigável em vez de uma página em branco.
 - Com `async/await` (Módulo 4), o tratamento de erros assíncronos usa exatamente o `try/catch` desta aula.
 
 ---
@@ -408,7 +410,7 @@ Você vai tratar erros principalmente na comunicação com a API:
 
 ## 10. O que é JSON?
 
-**JSON** (*JavaScript Object Notation*) é um **formato de texto** para representar dados. É o formato padrão de troca de dados entre front-end e back-end: quando o seu Spring Boot retorna um objeto num `@RestController`, o Jackson o transforma em JSON, e o Angular recebe esse texto.
+**JSON** (*JavaScript Object Notation*) é um **formato de texto** para representar dados. É o formato padrão de troca de dados entre front-end e back-end: quando o seu Spring Boot retorna um objeto num `@RestController`, o Jackson o transforma em JSON, e o React recebe esse texto.
 
 A sintaxe vem dos objetos literais do JS, mas é **mais restrita**:
 
@@ -615,9 +617,9 @@ const cliente = new Cliente(dados.nome);
 cliente.saudacao(); // "Olá, Ana!" ✅
 ```
 
-> ☕ **Diferença importante:** no Java, você **informa a classe** para o Jackson (`readValue(texto, Cliente.class)`), e ele cria a instância. No JS, o `JSON.parse` não tem como receber a classe. É por isso que, no Angular, os dados que chegam da API normalmente **ficam como objetos simples**, descritos por uma `interface` do TypeScript (aula 1.5, seção 8.4), em vez de virar instâncias de classe.
+> ☕ **Diferença importante:** no Java, você **informa a classe** para o Jackson (`readValue(texto, Cliente.class)`), e ele cria a instância. No JS, o `JSON.parse` não tem como receber a classe. É por isso que, no React, os dados que chegam da API normalmente **ficam como objetos simples**, descritos por uma `interface` do TypeScript (aula 1.5, seção 8.4), em vez de virar instâncias de classe.
 
-> 🔍 **Para conhecer:** o `JSON.parse` aceita um segundo argumento, o *reviver*, uma função que transforma cada valor durante a leitura. É usado, por exemplo, para converter textos de data de volta em objetos de data. Você raramente vai precisar dele no Angular.
+> 🔍 **Para conhecer:** o `JSON.parse` aceita um segundo argumento, o *reviver*, uma função que transforma cada valor durante a leitura. É usado, por exemplo, para converter textos de data de volta em objetos de data. Você raramente vai precisar dele no React.
 
 ---
 
@@ -633,9 +635,10 @@ Ele funciona para dados simples, mas carrega **todas as perdas da seção 11.2**
 
 ---
 
-## 14. E no Angular?
+## 14. E no React e no Next.js?
 
-- O `HttpClient` faz o `JSON.stringify` do que você **envia** e o `JSON.parse` do que você **recebe**, automaticamente. Você trabalha direto com objetos.
+- Com o `fetch` (aula 4.5), você faz o `JSON.stringify` do que **envia** (no `body`) e chama o `resposta.json()`, que faz o `JSON.parse`, para ler o que **recebe**.
+- No **Next.js** (Módulo 9), os dados que um Server Component passa para um Client Component viajam do servidor para o navegador **convertidos em texto**. Por isso, eles precisam ser "serializáveis", com as mesmas regras da seção 11.2: funções e instâncias de classe não podem ser passadas assim.
 - O `localStorage` do navegador (aula 4.3) só guarda **texto**, então para guardar objetos você vai usar `JSON.stringify` para salvar e `JSON.parse` para ler.
 - As **interfaces** do TypeScript (Módulo 5) servem para descrever o formato do JSON que chega da sua API.
 
