@@ -75,8 +75,8 @@ NN-nome-do-modulo/
 
 Atualize esta seção sempre que criar ou corrigir aulas.
 
-- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5), 1.6 (nota 9,5), 1.7 (nota 9). **Módulo 1 completo.** 2.1 (só leitura, marcada pelo próprio aluno).
-- **Prontas, aguardando o aluno:** 2.2 (em andamento: o aluno já começou o DELETE e o PATCH no `servidor.js`)
+- **Concluídas:** 1.1, 1.2 (nota 9,5), 1.3 (nota 8,5), 1.4 (nota 9), 1.5 (nota 9,5), 1.6 (nota 9,5), 1.7 (nota 9). **Módulo 1 completo.** 2.1 (só leitura, marcada pelo próprio aluno), 2.2 (nota 7,5: o PATCH tinha um bug de sombreamento de variável e várias respostas ficaram em branco).
+- **Prontas, aguardando o aluno:** nenhuma
 - **Próximas a criar:** 2.3 (como o navegador funciona + DevTools)
 - **Aula 2.2:** as respostas ficam no `exercicios/exercicios.md`, e o código no `exercicios/servidor.js` (DELETE e PATCH). Para corrigir: suba o servidor em segundo plano, teste as rotas com `curl.exe` (corpos com acento via arquivo `--data-binary @arquivo.json`, porque o terminal corrompe o UTF-8) e pare o processo na porta 3000 no final.
 - **Roadmap reorganizado em 22/10/2026** para React + Next.js. Mudanças além dos Módulos 7 a 9: 2.7 (Vite) virou ✅; 3.10 virou Tailwind ✅ (base do shadcn/ui) e o Sass foi para 🔍 (3.11); 5.13 (Zod) é nova, e as aulas 5.14 e 5.15 foram renumeradas; o Módulo 11 ganhou a 11.10 (onde chamar a IA: Spring ou Next.js); o projeto final é em Next.js, com o bônus 12.5 (interface do plugin do SketchUp).
@@ -89,5 +89,6 @@ Atualize esta seção sempre que criar ou corrigir aulas.
 - **`this`:** entendeu bem depois da explicação "olhe a linha em que a função é executada e veja o que está antes do ponto", mostrando um `forEach` simplificado que chama `callback(item)`. Reusar essa abordagem quando o tema voltar (classes no TS e componentes de classe do React legado).
 - **Closures:** são a base dos hooks. Na aula 7.6, ligar o "estado como foto de cada renderização" com as closures da aula 1.4 (o bug da *stale closure*).
 - **Validação:** lembrar que comparações com `undefined` dão `false` (buraco de validação) e que valores padrão não servem para dados obrigatórios.
-- **Responder o "por quê"** nos exercícios de explicação, e responder **todas** as partes das perguntas (deixou campos em branco na 1.4 e na 1.7; na 1.7 também respondeu só metade de perguntas com duas partes).
+- **Responder o "por quê"** nos exercícios de explicação, e responder **todas** as partes das perguntas (deixou campos em branco na 1.4, na 1.7 e na 2.2, onde ficaram em branco uma tabela inteira, a coluna "status real" e a pergunta do 204; também responde só metade de perguntas com várias partes). **É o ponto que mais tem tirado nota**: reforçar no início de cada lista de exercícios.
+- **Sombreamento de variáveis (aula 1.4, seção 1.3):** na 2.2, um `const { id, ...resto } = corpo` dentro do PATCH escondeu o `id` da rota, e a atualização não era salva. Quando aparecer destructuring dentro de funções, lembrar de nomes diferentes (`id: _id`).
 - Aprende melhor quando o raciocínio é montado em etapas (ex.: `for...of` → `reduce` mutável → `reduce` imutável) e com tabelas "volta a volta".

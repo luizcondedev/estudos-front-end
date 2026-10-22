@@ -52,7 +52,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 
 ## Módulo 2: Como a web funciona + ferramentas do dia a dia
 - [x] 2.1 ✅ **A IDE para front-end:** o IntelliJ IDEA Ultimate para JS/TS/React/Next.js (e o que muda na versão gratuita e no WebStorm), configurar o Node na IDE, terminal integrado, rodar e **depurar** código JS com breakpoints (como você já faz com Java), atalhos úteis
-- [ ] 2.2 ✅ Como a internet funciona: HTTP/HTTPS, métodos e status codes, DNS, domínio, hospedagem
+- [x] 2.2 ✅ Como a internet funciona: HTTP/HTTPS, métodos e status codes, DNS, domínio, hospedagem
 - [ ] 2.3 ✅ Como o navegador funciona: parsing, DOM, renderização; DevTools (Elements, Console, Network, Sources)
 - [ ] 2.4 ✅ npm a fundo: `package.json`, `dependencies` x `devDependencies`, scripts, `npx`, versionamento semântico, `package-lock.json` (🔍 pnpm/yarn)
 - [ ] 2.5 ✅ **Linters e formatadores:** ESLint e Prettier (o que são, diferença entre eles, instalar, configurar, integrar à IDE, formatar ao salvar)

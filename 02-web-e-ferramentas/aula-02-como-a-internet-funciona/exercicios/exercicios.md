@@ -25,13 +25,13 @@ https://api.minhaloja.com.br:8443/produtos/42?ordem=preco&pagina=2#avaliacoes
 | Fragmento | Resposta:#avaliacoes                 |
 
 a) Qual dessas partes **nunca chega ao servidor**? Por quê?
-Resposta: O protocolo, domínio, subdomínio, porta e o fragmento
+Resposta: O fragmento
 
 b) Se essa API fosse um `@RestController` do Spring, com a rota `@GetMapping("/produtos/{id}")`, qual parte da URL chegaria no `@PathVariable` e quais chegariam em `@RequestParam`?
-Resposta: No PathVariable chegaria o Caminho e no RequestParam chegaria a QueryString 
+Resposta: No PathVariable chegaria o 42 e no RequestParam chegaria um para ordem e outro para pagina 
 
 c) Se a URL não tivesse o `:8443`, qual porta seria usada? Por quê?
-Resposta: A 80 ou 443
+Resposta: 443
 
 ### 2) Métodos e rotas REST
 
@@ -160,7 +160,7 @@ No `servidor.js`, no lugar do `TODO (exercício 6)`, implemente a rota **`DELETE
 Teste com as requisições **E6.1** e **E6.2** do `requisicoes.http`, e com a R1 para conferir que o produto sumiu.
 
 a) Por que a resposta do DELETE usa o **204**, e não o **200**?
-Resposta:
+Resposta: o 204 significa “deu certo, e não há corpo”. Depois de remover, não há nada útil para devolver, e o 200 sugere que a resposta tem um corpo.
 
 ### 7) Desafio: PATCH
 
@@ -203,7 +203,7 @@ public ResponseEntity<List<Produto>> listar(
 // POST /produtos
 
 @PostMapping("/produtos")
-public ResponseEntity<Produto> cadastrar(@RequestBody Produto produto);
+public ResponseEntity<ProdutoResponseDTO> cadastrar(@Valid @RequestBody ProdutoRequestDTO dto);
 
 // DELETE /produtos/{id}
 @DeleteMapping("/produtos/{id}")
@@ -211,6 +211,6 @@ public ResponseEntity<Void> deletar(@PathVariable Long id);
 
 // PATCH /produtos/{id}
 @PatchMapping("/produtos/{id}")
-public ResponseEntity<Produto> deletar(@PathVariable Long id, 
-                                       @RequestBody Produto produto);
+public ResponseEntity<ProdutoResponseDTO> atualizar(@PathVariable Long id, 
+                                       @RequestBody ProdutoUpdateDTO dto);
 ```

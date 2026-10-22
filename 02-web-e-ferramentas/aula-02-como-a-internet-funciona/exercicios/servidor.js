@@ -81,13 +81,7 @@ function tratarRequisicao({ metodo, partes, query, corpo }) {
 
   if(metodo === "PATCH"){
     if(!produto) return {status: 404, corpo: {erro: `Produto ${idTexto} não encontrado`}};
-    const {id, ...camposPermitidos} = corpo;
-
-    // const camposPermitidos = ["nome", "preco"];
-    // const temCampoInvalido = Object.keys(corpo).some( // O some verifica sem tem algum elemento que satisfaça a condição
-    //     campo => !camposPermitidos.includes(campo)
-    // );
-    // if(temCampoInvalido) return {status: 400, corpo: {erro: `A requisição tem campos não permitidos de atualizar`, camposPermitidos: camposPermitidos}};
+    const {id: _id, ...camposPermitidos} = corpo ?? {};
 
     const produtoAtualizado = {
       ...produto,
@@ -95,7 +89,7 @@ function tratarRequisicao({ metodo, partes, query, corpo }) {
     };
 
     const erro = validarProduto(produtoAtualizado);
-    if(erro) return {status: 400, corpo: erro};
+    if(erro) return {status: 400, corpo: { erro }};
 
     produtos = produtos.map(p => p.id === id ? produtoAtualizado : p );
 
@@ -105,7 +99,7 @@ function tratarRequisicao({ metodo, partes, query, corpo }) {
   return {
     status: 405,
     corpo: { erro: `Método ${metodo} não permitido em /produtos/${idTexto}` },
-    cabecalhos: { Allow: "GET, DELETE"},
+    cabecalhos: { Allow: "GET, DELETE, PATCH"},
   };
 }
 
