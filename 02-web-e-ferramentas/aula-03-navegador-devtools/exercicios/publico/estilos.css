@@ -1,0 +1,48 @@
+/* Aula 2.3: estilos da Lojinha (você vai estudar CSS no Módulo 3) */
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  background: #f4f4f7;
+  color: #222;
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #1f6f5c;
+  color: white;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+main {
+  max-width: 640px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+#lista-produtos {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 0;
+}
+
+.card .preco {
+  color: #1f6f5c;
+  font-weight: bold;
+}
