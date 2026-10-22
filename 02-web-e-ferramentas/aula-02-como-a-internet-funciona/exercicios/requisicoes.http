@@ -1,0 +1,100 @@
+### ============================================================
+### Aula 2.2: requisições para o servidor.js
+### Com o servidor rodando, clique no ▶ verde ao lado de cada requisição.
+### A resposta (status, cabeçalhos e corpo) aparece no painel de baixo.
+### Cada requisição começa numa linha "###".
+### ============================================================
+
+### R1. Listar todos os produtos
+GET http://localhost:3000/produtos
+
+### R2. Listar ordenando por preço (query string)
+GET http://localhost:3000/produtos?ordem=preco
+
+### R3. Buscar um produto pelo id (parâmetro no caminho)
+GET http://localhost:3000/produtos/2
+
+### R4. Buscar um produto que não existe
+GET http://localhost:3000/produtos/99
+
+### R5. Criar um produto
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+  "nome": "Leite",
+  "preco": 6.49
+}
+
+### R6. Criar um produto inválido
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+  "nome": "",
+  "preco": 6.49
+}
+
+### R7. Enviar um JSON quebrado
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{ nome: 'Leite' }
+
+### R8. Enviar o corpo com o Content-Type errado
+POST http://localhost:3000/produtos
+Content-Type: text/plain
+
+{
+  "nome": "Leite",
+  "preco": 6.49
+}
+
+### R9. Usar um método que a rota não aceita
+PUT http://localhost:3000/produtos
+
+### R10. Acessar uma rota que não existe
+GET http://localhost:3000/clientes
+
+### ============================================================
+### Requisições dos exercícios 6 e 7 (só funcionam depois que você implementar)
+### ============================================================
+
+### E6.1 Remover um produto que existe
+DELETE http://localhost:3000/produtos/1
+
+### E6.2 Remover um produto que não existe
+DELETE http://localhost:3000/produtos/99
+
+### E7.1 Alterar só o preço
+PATCH http://localhost:3000/produtos/2
+Content-Type: application/json
+
+{
+  "preco": 10.9
+}
+
+### E7.2 Tentar alterar o id (deve ser ignorado)
+PATCH http://localhost:3000/produtos/2
+Content-Type: application/json
+
+{
+  "id": 500,
+  "nome": "Feijão Carioca"
+}
+
+### E7.3 Preço inválido
+PATCH http://localhost:3000/produtos/2
+Content-Type: application/json
+
+{
+  "preco": -1
+}
+
+### E7.4 Produto que não existe
+PATCH http://localhost:3000/produtos/99
+Content-Type: application/json
+
+{
+  "preco": 5
+}
