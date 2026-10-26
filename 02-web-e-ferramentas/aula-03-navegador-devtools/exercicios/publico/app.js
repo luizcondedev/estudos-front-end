@@ -20,7 +20,7 @@ localStorage.setItem("ultimaVisita", new Date().toLocaleString("pt-BR"));
 async function carregarProdutos() {
   const resposta = await fetch("/api/produtos"); // faz o GET (aula 2.2)
   const json = await resposta.json();            // converte o corpo com JSON.parse (aula 1.6)
-  const produtos = json.produtos;
+  const produtos = json.dados;
 
   for (const produto of produtos) {
     const item = document.createElement("li");   // cria um elemento <li> novo
