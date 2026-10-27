@@ -54,7 +54,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 - [x] 2.1 ✅ **A IDE para front-end:** o IntelliJ IDEA Ultimate para JS/TS/React/Next.js (e o que muda na versão gratuita e no WebStorm), configurar o Node na IDE, terminal integrado, rodar e **depurar** código JS com breakpoints (como você já faz com Java), atalhos úteis
 - [x] 2.2 ✅ Como a internet funciona: HTTP/HTTPS, métodos e status codes, DNS, domínio, hospedagem
 - [x] 2.3 ✅ Como o navegador funciona: parsing, DOM, renderização; DevTools (Elements, Console, Network, Sources)
-- [ ] 2.4 ✅ npm a fundo: `package.json`, `dependencies` x `devDependencies`, scripts, `npx`, versionamento semântico, `package-lock.json` (🔍 pnpm/yarn)
+- [x] 2.4 ✅ npm a fundo: `package.json`, `dependencies` x `devDependencies`, scripts, `npx`, versionamento semântico, `package-lock.json` (🔍 pnpm/yarn)
 - [ ] 2.5 ✅ **Linters e formatadores:** ESLint e Prettier (o que são, diferença entre eles, instalar, configurar, integrar à IDE, formatar ao salvar)
 - [ ] 2.6 ✅ Git e GitHub para front-end: `.gitignore`, branches, pull requests, conventional commits, a integração Git do IntelliJ (🔍 Husky + lint-staged)
 - [ ] 2.7 ✅ **Bundlers e o Vite:** o que um bundler faz, criar um projeto com o Vite, servidor de desenvolvimento, build de produção, variáveis de ambiente (🔍 esbuild, Rollup e o Turbopack, que o Next.js usa)
