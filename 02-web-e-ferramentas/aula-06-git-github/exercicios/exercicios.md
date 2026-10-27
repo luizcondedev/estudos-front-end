@@ -1,0 +1,223 @@
+# Exercícios da Aula 2.6: Git e GitHub
+
+⏱️ Cerca de 50 minutos. Responda **neste arquivo**, nos espaços marcados com `Resposta:` (cada parte de uma pergunta tem o seu). Desta vez, **você entrega a aula por um pull request**: todas as respostas vão numa branch nova, e não na `main`.
+
+**Onde rodar os comandos:** no terminal do IntelliJ. Uma aba nova do terminal abre na **raiz do repositório** (`estudos-front-end`), que é onde começam os exercícios 1, 2, 3 e 5. O exercício 4 diz quando mudar de pasta.
+
+> ⚠️ Nos comandos com caminho, use a tecla **Tab** para completar os nomes das pastas, em vez de digitar tudo.
+
+---
+
+### 1) A branch de entrega
+
+a) Na raiz do repositório, rode `git status`. Em qual branch você está?
+Resposta:
+
+Tem alguma mudança esperando commit? (Se tiver, me avise antes de continuar.)
+Resposta:
+
+b) Crie a branch da entrega e liste as branches:
+
+```bash
+git switch -c aula-2-6
+git branch
+```
+
+Quais branches aparecem, e o que o `*` indica?
+Resposta:
+
+c) Olhe o canto superior esquerdo do IntelliJ. O que ele mostra agora?
+Resposta:
+
+---
+
+### 2) Lendo o histórico
+
+a) Rode `git log --oneline -8` e copie a saída aqui.
+Resposta:
+
+b) Separe esses commits pelo **tipo** do Conventional Commits (seção 2): quais são `feat`, quais são `docs` e quais são `chore`?
+Resposta:
+
+c) Se este repositório fosse um pacote do npm com a versão calculada pelos commits (seção 2), qual desses tipos subiria o **minor**?
+Resposta:
+
+E um commit `docs`, mudaria a versão?
+Resposta:
+
+---
+
+### 3) O ciclo do commit pelo terminal
+
+> ⚠️ Faça este exercício **depois** de escrever as respostas do 1 e do 2, e salve o arquivo (**Ctrl+S**).
+
+a) Rode `git status`. Em qual seção da saída o `exercicios.md` aparece, e com qual palavra antes do nome dele?
+Resposta:
+
+b) Coloque o arquivo no staging e confira de novo:
+
+```bash
+git add 02-web-e-ferramentas/aula-06-git-github/exercicios/exercicios.md
+git status
+```
+
+Em qual seção ele aparece agora?
+Resposta:
+
+Qual ação do IntelliJ equivale a esse `git add` (seção 1)?
+Resposta:
+
+c) Faça o commit e veja o histórico:
+
+```bash
+git commit -m "docs: respostas dos exercícios 1 e 2 da aula 2.6"
+git log --oneline -3
+```
+
+Qual é o hash do seu commit? (Esta resposta vai entrar no próximo commit, e está tudo bem.)
+Resposta:
+
+---
+
+### 4) Um conflito de merge, num repositório de treino
+
+Para treinar sem risco, você vai criar um repositório **separado e pequeno**, dentro da pasta `exercicios`. O arquivo `exercicios/.gitignore` (que já vem pronto) faz o repositório do curso ignorar essa pasta.
+
+a) Crie o repositório de treino:
+
+```bash
+cd 02-web-e-ferramentas/aula-06-git-github/exercicios
+mkdir treino-git
+cd treino-git
+git init -b main
+```
+
+O `git init` cria um repositório novo (a pasta `.git`), e o `-b main` dá o nome `main` à primeira branch. Se o IntelliJ mostrar o aviso **"Unregistered VCS root detected"**, clique em **Add root**, para ele mostrar esse repositório também.
+
+Dentro da pasta `treino-git`, crie o arquivo `precos.js` (no IntelliJ: botão direito na pasta → **New → File**) com este conteúdo:
+
+```javascript
+export const frete = 10;
+export const desconto = 0.05;
+```
+
+E faça o primeiro commit:
+
+```bash
+git add precos.js
+git commit -m "feat: valores iniciais de frete e desconto"
+```
+
+b) Volte uma pasta (`cd ..`), para a pasta `exercicios`, e rode `git status` e `git check-ignore -v treino-git`. A pasta `treino-git` aparece no `git status`? Qual arquivo e qual linha a ignoram?
+Resposta:
+
+> 💡 Repare: o mesmo comando `git status` responde sobre **outro repositório** dependendo da pasta em que você está. Fora da `treino-git`, ele fala do repositório do curso; dentro dela, do repositório de treino.
+
+Volte para o repositório de treino (`cd treino-git`). **Até o fim do exercício 4, todos os comandos rodam dentro da `treino-git`.**
+
+c) Crie uma branch e mude o `precos.js` nela:
+
+```bash
+git switch -c feature/frete-gratis
+```
+
+Troque o conteúdo do `precos.js` por este, salve, e faça o commit:
+
+```javascript
+export const frete = 12;
+export const freteGratisAcimaDe = 200;
+export const desconto = 0.05;
+```
+
+```bash
+git commit -am "feat: frete grátis acima de 200 reais"
+```
+
+O `-a` faz o `git add` sozinho de todos os arquivos que **já estão** no Git e foram alterados.
+
+d) Volte para a `main` com `git switch main` e abra o `precos.js`. A linha do `freteGratisAcimaDe` está lá? Por quê?
+Resposta:
+
+Agora, na `main`, troque só a primeira linha para `export const frete = 15;`, salve, e faça o commit:
+
+```bash
+git commit -am "fix: corrige o valor do frete para 15 reais"
+```
+
+e) Junte a branch na `main`:
+
+```bash
+git merge feature/frete-gratis
+```
+
+Qual mensagem o Git mostrou?
+Resposta:
+
+Copie aqui o conteúdo do `precos.js`, com as marcações:
+Resposta:
+
+O que significa o trecho entre o `<<<<<<< HEAD` e o `=======`, e o trecho entre o `=======` e o `>>>>>>>`?
+Resposta:
+
+f) **Resolva o conflito.** A decisão do time: o frete certo é **15** (o conserto da `main`), e o **frete grátis acima de 200** também deve entrar. Resolva pelo IntelliJ (**Git → Resolve Conflicts → Merge...**, seção 4) ou editando o arquivo à mão. Depois, termine o merge:
+
+```bash
+git add precos.js
+git commit --no-edit
+```
+
+> ⚠️ Não esqueça o `--no-edit`: sem ele, o Git abre o editor Vim (seção 6).
+
+Copie o `precos.js` final:
+Resposta:
+
+g) Rode `git log --oneline --graph` e copie a saída:
+Resposta:
+
+Qual commit tem **duas linhas chegando nele** (dois "pais")? Por quê?
+Resposta:
+
+h) 🔍 **Opcional:** desfaça um commit. Troque a primeira linha do `precos.js` para `export const frete = 0;` e faça o commit com `git commit -am "feat: frete zerado"`. Ops, foi um erro. Desfaça com `git revert --no-edit HEAD` e rode `git log --oneline`. O commit do "frete zerado" foi apagado do histórico? E o que tem no `precos.js` agora?
+Resposta:
+
+Por que o `revert` é o jeito seguro de desfazer um commit que **já foi enviado** para o GitHub (seção 6)?
+Resposta:
+
+---
+
+### 5) A entrega por pull request
+
+> ⚠️ **Volte para a raiz do repositório do curso:** abra uma aba nova no terminal do IntelliJ (ela abre em `estudos-front-end`). Rode `git branch` e confira se o `*` está na `aula-2-6`.
+
+a) Faça o commit das respostas e envie a branch para o GitHub:
+
+```bash
+git add 02-web-e-ferramentas/aula-06-git-github/exercicios/exercicios.md
+git commit -m "docs: respostas dos exercícios 3 e 4 da aula 2.6"
+git push -u origin aula-2-6
+```
+
+Na saída do `push`, o GitHub mostra um link começando com `https://github.com/...`. O que esse link oferece?
+Resposta:
+
+b) Abra o link (ou a página do repositório, onde aparece o aviso amarelo **"Compare & pull request"**) e crie o pull request:
+- **Título:** `docs: exercícios da aula 2.6`
+- **Descrição:** duas linhas, dizendo o que o PR contém.
+
+⚠️ **Não faça o merge.** A correção vai acontecer com o PR aberto, como numa revisão de código de verdade.
+
+Cole aqui o endereço do seu PR:
+Resposta:
+
+c) Antes de enviar estas últimas respostas: o que você espera que aconteça com o PR quando você der `push` num commit novo da mesma branch (seção 5)?
+Resposta:
+
+Agora envie as respostas do exercício 5:
+
+```bash
+git add 02-web-e-ferramentas/aula-06-git-github/exercicios/exercicios.md
+git commit -m "docs: respostas do exercício 5 da aula 2.6"
+git push
+```
+
+Repare que, agora, é só `git push`, sem o `-u origin aula-2-6`. Abra a aba **Commits** do seu PR no GitHub e confira se a sua previsão estava certa. Depois, é só me pedir "corrige a 2.6".
