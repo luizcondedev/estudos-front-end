@@ -1,5 +1,7 @@
 # Aula 2.4: npm a fundo
 
+> **Por que esta aula importa?** Todo projeto React e Next.js é um projeto npm. As bibliotecas que você vai usar no curso (React, Next.js, shadcn/ui, Zod, TanStack Query) chegam pelo npm, e os comandos do dia a dia (`npm run dev`, `npm run build`) são scripts do `package.json`. Entender as versões e o `package-lock.json` evita o clássico "na minha máquina funciona" e as quebras quando uma biblioteca atualiza. E como cada pacote é código de outra pessoa rodando na sua máquina, saber o que você instala também é uma questão de segurança.
+>
 > ⏱️ **Aula enxuta:** cerca de 30 minutos de leitura e 45 de exercícios. O npm é uma ferramenta que se aprende usando, e você já conhece a ideia dele: ele é o **Maven do JavaScript**. Por isso, esta aula vai direto ao que você vai usar todo dia.
 
 **Exercícios:** o [exercicios.md](./exercicios/exercicios.md) traz o passo a passo: você vai criar um projeto do zero, instalar pacotes, criar scripts e ver o versionamento funcionando.

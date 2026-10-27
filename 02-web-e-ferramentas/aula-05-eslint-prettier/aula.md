@@ -1,5 +1,7 @@
 # Aula 2.5: Linters e formatadores (ESLint e Prettier)
 
+> **Por que esta aula importa?** O JavaScript não tem compilador: um nome de variável digitado errado só aparece quando a linha roda, às vezes na tela do cliente. O ESLint pega esse tipo de erro enquanto você digita, e o Prettier acaba com o tempo gasto (e as discussões no time) com formatação. Todo projeto profissional usa os dois: o `create-next-app` já vem com o ESLint, e no React as regras dos hooks (Módulo 7) pegam bugs que quebrariam a tela. Configurando agora, o IntelliJ passa a trabalhar por você em todas as próximas aulas.
+>
 > ⏱️ **Aula enxuta:** cerca de 25 minutos de leitura e 45 de exercícios. São duas ferramentas que você configura uma vez por projeto e depois esquece que existem: elas trabalham sozinhas, toda vez que você salva um arquivo.
 
 **Exercícios:** a pasta [exercicios](./exercicios/) tem um projeto pequeno com código mal formatado **e** com bugs. O [exercicios.md](./exercicios/exercicios.md) traz o passo a passo.
