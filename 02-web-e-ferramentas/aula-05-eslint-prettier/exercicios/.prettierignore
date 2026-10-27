@@ -1,0 +1,3 @@
+# Arquivos que o Prettier NÃO deve formatar (mesma sintaxe do .gitignore).
+# O exercicios.md tem as suas respostas: não queremos o Prettier mexendo nele.
+exercicios.md
