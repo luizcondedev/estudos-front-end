@@ -117,7 +117,7 @@ git commit -m "feat: valores iniciais de frete e desconto"
 ```
 
 b) Volte uma pasta (`cd ..`), para a pasta `exercicios`, e rode `git status` e `git check-ignore -v treino-git`. A pasta `treino-git` aparece no `git status`? Qual arquivo e qual linha a ignoram?
-Resposta:
+Resposta: Não aparece, são ignorados pelo .gitignore na linha 3 
 
 > 💡 Repare: o mesmo comando `git status` responde sobre **outro repositório** dependendo da pasta em que você está. Fora da `treino-git`, ele fala do repositório do curso; dentro dela, do repositório de treino.
 
@@ -144,7 +144,7 @@ git commit -am "feat: frete grátis acima de 200 reais"
 O `-a` faz o `git add` sozinho de todos os arquivos que **já estão** no Git e foram alterados.
 
 d) Volte para a `main` com `git switch main` e abra o `precos.js`. A linha do `freteGratisAcimaDe` está lá? Por quê?
-Resposta:
+Resposta: Nao, pois ainda não fizemos os merges das duas branchs e elas são areas de trabalho, completamente diferentes
 
 Agora, na `main`, troque só a primeira linha para `export const frete = 15;`, salve, e faça o commit:
 
@@ -159,13 +159,20 @@ git merge feature/frete-gratis
 ```
 
 Qual mensagem o Git mostrou?
-Resposta:
+Resposta: Auto-merging precos.js CONFLICT (content): Merge conflict in precos.js
 
 Copie aqui o conteúdo do `precos.js`, com as marcações:
 Resposta:
+<<<<<<< HEAD
+export const frete = 15;
+=======
+export const frete = 12;
+export const freteGratisAcimaDe = 200;
+>>>>>>> feature/frete-gratis
+export const desconto = 0.05;
 
 O que significa o trecho entre o `<<<<<<< HEAD` e o `=======`, e o trecho entre o `=======` e o `>>>>>>>`?
-Resposta:
+Resposta:O conteudo da main e da feature/frete-gratis, respectivamente 
 
 f) **Resolva o conflito.** A decisão do time: o frete certo é **15** (o conserto da `main`), e o **frete grátis acima de 200** também deve entrar. Resolva pelo IntelliJ (**Git → Resolve Conflicts → Merge...**, seção 4) ou editando o arquivo à mão. Depois, termine o merge:
 
@@ -178,18 +185,27 @@ git commit --no-edit
 
 Copie o `precos.js` final:
 Resposta:
+export const frete = 15;
+export const freteGratisAcimaDe = 200;
+export const desconto = 0.05;
 
 g) Rode `git log --oneline --graph` e copie a saída:
 Resposta:
+*   8a1c462 (HEAD -> main) Merge branch 'feature/frete-gratis'
+    |\  
+    | * 98a6a8a (feature/frete-gratis) feat: frete grátis acima de 200 reais
+* | c789e69 fix: corrige o valor do frete para 15 reais
+  |/
+* fc49615 feat: valores iniciais de frete e desconto
 
 Qual commit tem **duas linhas chegando nele** (dois "pais")? Por quê?
-Resposta:
+Resposta:  Essa eu nao entendi muito bem, nao foi explicado no conteúdo, mas vou chutar, acredito que seja a 98a6a8a, pois recebe o valores da branch e da main 
 
 h) 🔍 **Opcional:** desfaça um commit. Troque a primeira linha do `precos.js` para `export const frete = 0;` e faça o commit com `git commit -am "feat: frete zerado"`. Ops, foi um erro. Desfaça com `git revert --no-edit HEAD` e rode `git log --oneline`. O commit do "frete zerado" foi apagado do histórico? E o que tem no `precos.js` agora?
 Resposta:
 
 Por que o `revert` é o jeito seguro de desfazer um commit que **já foi enviado** para o GitHub (seção 6)?
-Resposta:
+Resposta: Pois, ele cria um novo commit com o conteudo antes de antes do commit que foi removido, assim nao apaga o trabalho de ninguém e mantém um histórico
 
 ---
 
