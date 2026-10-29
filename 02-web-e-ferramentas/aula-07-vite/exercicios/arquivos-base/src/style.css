@@ -1,0 +1,31 @@
+/* Aula 2.7: estilos da Lojinha (você vai estudar CSS no Módulo 3) */
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  background: #f4f4f7;
+  color: #222;
+}
+
+main {
+  max-width: 640px;
+  margin: 48px auto;
+  padding: 24px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+h1 {
+  color: #1f6f5c;
+}
+
+.destaque {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.rodape {
+  color: #777;
+  font-size: 0.9rem;
+}
