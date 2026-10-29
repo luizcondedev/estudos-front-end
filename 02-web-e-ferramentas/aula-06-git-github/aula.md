@@ -21,7 +21,7 @@ O Git guarda o seu trabalho em quatro lugares. Entender a passagem de um para o 
 
 - **Pasta de trabalho:** os arquivos como estão agora, no disco.
 - **Staging** (ou *index*): a "lista do próximo commit". Você escolhe **quais** mudanças entram.
-- **Repositório local:** o histórico de commits, guardado na pasta oculta `.git`. Cada **commit** é uma foto do projeto inteiro naquele momento, com autor, data, mensagem e um identificador (o *hash*, como `1d2c622`).
+- **Repositório local:** o histórico de commits, guardado na pasta oculta `.git`. Cada **commit** é uma foto do projeto inteiro naquele momento, com autor, data, mensagem, um identificador (o *hash*, como `1d2c622`) e a referência ao commit que veio antes dele, chamado de **pai**. É essa ligação de cada commit com o seu pai que forma o histórico.
 - **Remoto:** a cópia no GitHub, chamada de **`origin`** por padrão.
 
 **O que o IntelliJ faz quando você clica:**
@@ -127,6 +127,19 @@ export const desconto = 0.05;
 2. Edite o arquivo para ficar assim e **apague as três linhas de marcação**.
 3. Marque o conflito como resolvido com `git add precos.js`, e termine o merge com `git commit --no-edit` (o `--no-edit` usa a mensagem padrão, "Merge branch '...'").
 
+**O commit de merge:** um commit normal tem **um** pai (seção 1). O commit que o merge cria tem **dois**: o último commit da branch onde você estava e o último commit da branch que chegou. É assim que o Git registra que as duas linhas de trabalho se juntaram, e é por isso que, no `git log --graph`, ele aparece com duas linhas chegando nele:
+
+```text
+*   8a1c462 Merge branch 'feature/frete-gratis'      ← dois pais: c789e69 e 98a6a8a
+|\
+| * 98a6a8a feat: frete grátis acima de 200 reais
+* | c789e69 fix: corrige o valor do frete para 15 reais
+|/
+* fc49615 feat: valores iniciais de frete e desconto
+```
+
+(Se a branch que recebe o merge não teve nenhum commit novo desde que a outra foi criada, o Git nem cria um commit de merge: ele só move a etiqueta da branch para a frente. Isso se chama *fast-forward*.)
+
 **No IntelliJ (bem mais fácil):** quando acontece um conflito, ele abre a janela **Conflicts** (ou use o menu **Git → Resolve Conflicts**). Clique em **Merge...** e aparece uma tela com três colunas: **a sua versão** à esquerda, **a que está chegando** à direita e o **resultado** no meio. Use as setas **>>** e **<<** para trazer cada mudança para o meio, edite o que precisar e clique em **Apply**. O IntelliJ já marca o arquivo como resolvido.
 
 **Armadilhas:**
@@ -194,7 +207,7 @@ dist/
 |---|---|---|
 | Descartar as mudanças de um arquivo (que ainda não viraram commit) | `git restore arquivo` | Botão direito → **Git → Rollback** |
 | Tirar um arquivo do staging | `git restore --staged arquivo` | Desmarcar na janela de commit |
-| Corrigir a mensagem ou incluir um arquivo no último commit, **antes do push** | `git commit --amend` | Opção **Amend** na janela de commit |
+| Corrigir a mensagem ou incluir um arquivo no último commit, **antes do push** | `git commit --amend` (o commit é **substituído** por um novo, com outro hash) | Opção **Amend** na janela de commit |
 | Desfazer um commit que **já foi enviado** | `git revert <hash>` (cria um commit novo, que desfaz o outro) | No Log, botão direito no commit → **Revert Commit** |
 | Guardar as mudanças por um tempo, para trocar de branch | `git stash` e, depois, `git stash pop` | **Git → Uncommitted Changes → Stash Changes** |
 

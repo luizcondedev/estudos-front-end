@@ -56,7 +56,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 - [x] 2.3 ✅ Como o navegador funciona: parsing, DOM, renderização; DevTools (Elements, Console, Network, Sources)
 - [x] 2.4 ✅ npm a fundo: `package.json`, `dependencies` x `devDependencies`, scripts, `npx`, versionamento semântico, `package-lock.json` (🔍 pnpm/yarn)
 - [x] 2.5 ✅ **Linters e formatadores:** ESLint e Prettier (o que são, diferença entre eles, instalar, configurar, integrar à IDE, formatar ao salvar)
-- [ ] 2.6 ✅ Git e GitHub para front-end: `.gitignore`, branches, pull requests, conventional commits, a integração Git do IntelliJ (🔍 Husky + lint-staged)
+- [x] 2.6 ✅ Git e GitHub para front-end: `.gitignore`, branches, pull requests, conventional commits, a integração Git do IntelliJ (🔍 Husky + lint-staged)
 - [ ] 2.7 ✅ **Bundlers e o Vite:** o que um bundler faz, criar um projeto com o Vite, servidor de desenvolvimento, build de produção, variáveis de ambiente (🔍 esbuild, Rollup e o Turbopack, que o Next.js usa)
 - [ ] 2.8 ✅ Estudando com IA: usar a IA como tutor, e não como atalho (o que pedir e o que **não** pedir enquanto aprende)
 
