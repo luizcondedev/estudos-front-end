@@ -11,10 +11,10 @@
 ### 1) A branch de entrega
 
 a) Na raiz do repositório, rode `git status`. Em qual branch você está?
-Resposta:
+Resposta: origin/main
 
 Tem alguma mudança esperando commit? (Se tiver, me avise antes de continuar.)
-Resposta:
+Resposta: Não
 
 b) Crie a branch da entrega e liste as branches:
 
@@ -24,10 +24,10 @@ git branch
 ```
 
 Quais branches aparecem, e o que o `*` indica?
-Resposta:
+Resposta: aula-2-6 e main, o * significa qual branch que estou trabalhando agora
 
 c) Olhe o canto superior esquerdo do IntelliJ. O que ele mostra agora?
-Resposta:
+Resposta: aula-2-6
 
 ---
 
@@ -35,15 +35,23 @@ Resposta:
 
 a) Rode `git log --oneline -8` e copie a saída aqui.
 Resposta:
+b1290ab (HEAD -> aula-2-6, origin/main, main) feat: aula 2.6 - Git e GitHub (aula enxuta)
+1d2c622 feat: exercícios da aula 2.5 e correção (nota 9)
+b97ffa4 docs: adiciona "Por que esta aula importa?" nas aulas enxutas
+7c59f19 feat: aula 2.5 - ESLint e Prettier (aula enxuta)
+1db2be7 feat: exercícios da aula 2.4 e correção (nota 8)
+418801b chore: remove arquivo de teste da aula 2.3
+0620f99 feat: exercícios da aula 2.3 e correção (nota 9)
+05b0b2b docs: regra para calibrar o tamanho das aulas e progresso
 
 b) Separe esses commits pelo **tipo** do Conventional Commits (seção 2): quais são `feat`, quais são `docs` e quais são `chore`?
-Resposta:
+Resposta: Feat: 1d2c622, 7c59f18, 1db2be7, 0620f99 | docs: b97ffa4, 05b0b2b | chore: 418801b
 
 c) Se este repositório fosse um pacote do npm com a versão calculada pelos commits (seção 2), qual desses tipos subiria o **minor**?
-Resposta:
+Resposta: feat
 
 E um commit `docs`, mudaria a versão?
-Resposta:
+Resposta: Não, pois é apenas documentação
 
 ---
 
@@ -52,7 +60,7 @@ Resposta:
 > ⚠️ Faça este exercício **depois** de escrever as respostas do 1 e do 2, e salve o arquivo (**Ctrl+S**).
 
 a) Rode `git status`. Em qual seção da saída o `exercicios.md` aparece, e com qual palavra antes do nome dele?
-Resposta:
+Resposta:changes not staged for commit e aparece modified 
 
 b) Coloque o arquivo no staging e confira de novo:
 
@@ -62,10 +70,10 @@ git status
 ```
 
 Em qual seção ele aparece agora?
-Resposta:
+Resposta: Changes to be commited
 
 Qual ação do IntelliJ equivale a esse `git add` (seção 1)?
-Resposta:
+Resposta: Selecionar os arquivos na aba commit
 
 c) Faça o commit e veja o histórico:
 
@@ -75,7 +83,7 @@ git log --oneline -3
 ```
 
 Qual é o hash do seu commit? (Esta resposta vai entrar no próximo commit, e está tudo bem.)
-Resposta:
+Resposta: f1b4d8d
 
 ---
 
