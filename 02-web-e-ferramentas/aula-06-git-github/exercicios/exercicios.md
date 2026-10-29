@@ -222,7 +222,7 @@ git push -u origin aula-2-6
 ```
 
 Na saída do `push`, o GitHub mostra um link começando com `https://github.com/...`. O que esse link oferece?
-Resposta:
+Resposta: Oferece um link para fazer um pull request e um link com o repo remoto. 
 
 b) Abra o link (ou a página do repositório, onde aparece o aviso amarelo **"Compare & pull request"**) e crie o pull request:
 - **Título:** `docs: exercícios da aula 2.6`
@@ -231,10 +231,10 @@ b) Abra o link (ou a página do repositório, onde aparece o aviso amarelo **"Co
 ⚠️ **Não faça o merge.** A correção vai acontecer com o PR aberto, como numa revisão de código de verdade.
 
 Cole aqui o endereço do seu PR:
-Resposta:
+Resposta: https://github.com/luizcondedev/estudos-front-end/pull/1
 
 c) Antes de enviar estas últimas respostas: o que você espera que aconteça com o PR quando você der `push` num commit novo da mesma branch (seção 5)?
-Resposta:
+Resposta: Ele vai atualizar o meu PR
 
 Agora envie as respostas do exercício 5:
 
