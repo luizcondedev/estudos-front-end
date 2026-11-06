@@ -11,19 +11,20 @@ Você vai precisar de um chat de IA: Claude, ChatGPT, Gemini ou o que preferir. 
 Escolha **o conceito do curso que você acha mais difícil até agora** (alguns candidatos: `this`, closures, cópia rasa, `defer`, cookies `HttpOnly`, tree-shaking).
 
 a) Qual conceito você escolheu?
-Resposta:
+Resposta: Spreads.
 
 b) Escreva um prompt seguindo o modelo da seção 3 da aula: diga quem você é, peça a comparação com o Java e peça um quiz de 3 perguntas, **uma por vez**, com a correção só depois de você responder. Cole aqui o prompt que você usou:
-Resposta:
+Resposta: Sou um desenvolvedor Java e estou aprendendo JS, estou com dificuldades em spreads, pode me explicar o conceito comparando com java.
+Faça um quiz de 3 perguntas sobre spreads, uma por vez, corrija antes de mandar a proxima pergunta.  
 
 c) Qual foi a analogia com o Java que a IA usou? Ela te ajudou, ou ficou forçada?
-Resposta:
+Resposta: Ela usou as copias com new ArrayList e as concatenações com new ArrayList + addAll. 
 
 d) Responda o quiz no chat. Quantas das 3 você acertou? Alguma pergunta mostrou uma dúvida que você nem sabia que tinha?
-Resposta:
+Resposta: Acertei duas, e percebi que tinha uma dúvida com cópia rasa. 
 
 e) Confira **um** ponto da explicação da IA na aula do curso ou no MDN. Qual ponto você conferiu, e ele estava certo?
-Resposta:
+Resposta: Conferi o ponto dos Spreads em objetos, e ela estava certa sim!! 
 
 ---
 
@@ -35,15 +36,38 @@ O arquivo [desafio.js](./desafio.js) pede uma função `resumoPorCategoria`. **A
 
 a) Tente sozinho primeiro (uns 15 minutos). Até onde você chegou sem ajuda?
 Resposta:
+function resumoPorCategoria(lista) {
+const resumo = lista.reduce((acumulador, produto)  => ({
+...acumulador,
+[produto.categoria]:
+}))
+}
 
 b) Use o prompt de "dicas em níveis" da seção 3. Cole aqui o prompt e **cada dica** que você pediu, em ordem:
 Resposta:
 
+Estou travado neste exercício:
+devolva um objeto com uma chave para cada categoria. O valor de cada
+chave é um objeto com:
+- itens: a soma das quantidades dos produtos daquela categoria
+- total: a soma de preço x quantidade dos produtos daquela categoria
+  Não altere o array produtos..
+  Meu código até agora:
+  function resumoPorCategoria(lista) {
+  const resumo = lista.reduce((acumulador, produto)  => ({
+  ...acumulador,
+  [produto.categoria]:
+  }))
+  }
+  Me dê só uma dica pequena, sem código. Se eu pedir, dê a próxima.
+
+(Esqueci de ir colando as dicas que fui pedindo, mas basicamente fui so colocando "me de a proxima dica")
+
 c) Termine o `desafio.js` e rode-o com `node desafio.js` (de dentro da pasta `exercicios`). As duas linhas de verificação deram ✅?
-Resposta:
+Resposta: Sim
 
 d) Quantas dicas você precisou? Qual delas destravou o problema?
-Resposta:
+Resposta: Precisei de 6 dicas, a que me destravou foi como acessar o acumulador do reduce direto sem fazer que ele nao desse erro, caso não existisse (tinha esquecido do ?.) 
 
 ---
 
@@ -61,18 +85,18 @@ Alguém perguntou a uma IA: *"Como eu crio um projeto React com lint, mostro o t
 
 Encontre **os 5 problemas**. Para cada um, diga **o que está errado** e **onde você conferiu**: uma aula do curso, uma documentação oficial ou um teste que você rodou.
 
-| Passo | O que está errado | Onde conferi |
-|---|---|---|
-| 1 | Resposta: | Resposta: |
-| 2 | Resposta: | Resposta: |
-| 3 | Resposta: | Resposta: |
-| 4 | Resposta: | Resposta: |
-| 5 | Resposta: | Resposta: |
+| Passo | O que está errado                                    | Onde conferi       |
+|---|------------------------------------------------------|--------------------|
+| 1 | Resposta: create-react-app abandonado                | Resposta: do curso |
+| 2 | Resposta: .eslintrc.json desatualizado tambem        | Resposta: curso    |
+| 3 | Resposta: Nao existe um import com esse nome         | Resposta: curso    |
+| 4 | Resposta: nao pode colocar segredo em variavel VITE_ | Resposta: curso    |
+| 5 | Resposta: tem que usar o isNan                       | Resposta: curso    |
 
 > 💡 Para o passo 3: se você já fez a aula 2.7, tem o `date-fns` instalado na `lojinha-vite`. Que tal testar o `import` lá, com o `npm run dev` e o Console aberto?
 
 Qual desses erros seria o **mais grave** se fosse para produção, e por quê?
-Resposta:
+Resposta: A chave de API de pagamento, pois podem até mesmo fazer movimentações, estornos e etc  
 
 ---
 

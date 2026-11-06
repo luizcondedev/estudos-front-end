@@ -5,11 +5,11 @@
 // ============================================================
 
 const produtos = [
-  { nome: "Café Torrado 500 g", categoria: "bebidas", preco: 26, quantidade: 2 },
-  { nome: "Chá Mate", categoria: "bebidas", preco: 12.5, quantidade: 3 },
-  { nome: "Caneca do Dev", categoria: "utensílios", preco: 40, quantidade: 1 },
-  { nome: "Camiseta JavaScript", categoria: "roupas", preco: 50, quantidade: 1 },
-  { nome: "Moletom TypeScript", categoria: "roupas", preco: 130, quantidade: 1 },
+    {nome: "Café Torrado 500 g", categoria: "bebidas", preco: 26, quantidade: 2},
+    {nome: "Chá Mate", categoria: "bebidas", preco: 12.5, quantidade: 3},
+    {nome: "Caneca do Dev", categoria: "utensílios", preco: 40, quantidade: 1},
+    {nome: "Camiseta JavaScript", categoria: "roupas", preco: 50, quantidade: 1},
+    {nome: "Moletom TypeScript", categoria: "roupas", preco: 130, quantidade: 1},
 ];
 
 // TODO: devolva um objeto com uma chave para cada categoria. O valor de cada
@@ -18,7 +18,15 @@ const produtos = [
 //   - total: a soma de preço x quantidade dos produtos daquela categoria
 // Não altere o array produtos.
 function resumoPorCategoria(lista) {
-  // seu código aqui
+    const resumo = lista.reduce((acumulador, produto) => ({
+        ...acumulador,
+        [produto.categoria]: {
+                itens: (acumulador[produto.categoria]?.itens ?? 0) + produto.quantidade,
+                total: (acumulador[produto.categoria]?.total ?? 0) + (produto.preco * produto.quantidade)
+            }
+    }), {})
+
+    return resumo;
 }
 
 // ------------------------------------------------------------
@@ -35,21 +43,21 @@ console.log(resultado);
 // }
 
 const esperado = {
-  bebidas: { itens: 5, total: 89.5 },
-  utensílios: { itens: 1, total: 40 },
-  roupas: { itens: 2, total: 180 },
+    bebidas: {itens: 5, total: 89.5},
+    utensílios: {itens: 1, total: 40},
+    roupas: {itens: 2, total: 180},
 };
 const categorias = Object.keys(esperado);
 const certo =
-  Object.keys(resultado ?? {}).length === categorias.length &&
-  categorias.every(
-    (c) =>
-      resultado[c]?.itens === esperado[c].itens &&
-      resultado[c]?.total === esperado[c].total,
-  );
+    Object.keys(resultado ?? {}).length === categorias.length &&
+    categorias.every(
+        (c) =>
+            resultado[c]?.itens === esperado[c].itens &&
+            resultado[c]?.total === esperado[c].total,
+    );
 console.log(certo ? "✅ Resultado certo" : "❌ Resultado diferente do esperado");
 console.log(
-  JSON.stringify(produtos) === antes
-    ? "✅ O array original não foi alterado"
-    : "❌ O array original foi alterado",
+    JSON.stringify(produtos) === antes
+        ? "✅ O array original não foi alterado"
+        : "❌ O array original foi alterado",
 );
