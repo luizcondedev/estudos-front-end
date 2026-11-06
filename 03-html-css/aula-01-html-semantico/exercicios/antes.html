@@ -1,0 +1,66 @@
+<html>
+<head>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; background: #f4f4f7; color: #222; }
+    .topo { background: #1f6f5c; color: white; padding: 16px 24px; }
+    .marca { font-size: 1.4rem; font-weight: bold; }
+    .menu a { color: white; margin-right: 12px; }
+    /* Deixa uma lista dentro do menu em linha e sem bolinhas (display: flex é da aula 3.7) */
+    .menu ul { list-style: none; display: flex; padding: 0; margin: 8px 0 0; }
+    .conteudo { max-width: 720px; margin: 24px auto; padding: 0 16px; }
+    .produto { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 24px; }
+    .titulo { font-size: 2rem; font-weight: bold; margin-bottom: 8px; }
+    .subtitulo { font-size: 1.3rem; font-weight: bold; margin: 24px 0 8px; }
+    .autor { font-weight: bold; }
+    .preco { color: #1f6f5c; font-size: 1.5rem; font-weight: bold; }
+    .avaliacao { border-top: 1px solid #eee; padding: 12px 0; }
+    .lateral { margin-top: 24px; padding: 16px; background: #e8f3f0; border-radius: 8px; }
+    .rodape { text-align: center; color: #555; padding: 24px; }
+  </style>
+</head>
+<body>
+  <div class="topo">
+    <div class="marca">Lojinha do Dev</div>
+    <div class="menu">
+      <a href="#">Início</a> | <a href="#">Canecas</a> | <a href="#">Camisetas</a> | <a href="#">Contato</a>
+    </div>
+  </div>
+
+  <div class="conteudo">
+    <div class="produto">
+      <div class="titulo">Caneca do Dev</div>
+      <div>Publicado em 06/11/2026</div>
+      <br>
+      <img src="imagens/caneca.svg" width="160">
+      <br><br>
+      A caneca oficial de quem programa até tarde. Cabe <b>350 ml</b> de café, e o desenho
+      <i>não</i> sai na lava-louças.
+      <br><br>
+      <span class="preco">R$ 39,90</span>
+
+      <div class="subtitulo">Características</div>
+      <div>• Cerâmica resistente</div>
+      <div>• Capacidade de 350 ml</div>
+      <div>• Pode ir ao micro-ondas</div>
+
+      <div class="subtitulo">Avaliações</div>
+      <div class="avaliacao">
+        <div class="autor">Ana</div>
+        <div>Perfeita para o café da manhã. Recomendo!</div>
+      </div>
+      <div class="avaliacao">
+        <div class="autor">Bruno</div>
+        <div>Chegou rápido, mas é menor do que eu imaginava.</div>
+      </div>
+    </div>
+
+    <div class="lateral">
+      <div class="subtitulo">Você também pode gostar</div>
+      <a href="#">Camiseta JavaScript</a><br>
+      <a href="#">Moletom TypeScript</a>
+    </div>
+  </div>
+
+  <div class="rodape">© 2026 Lojinha do Dev. Todos os direitos reservados.</div>
+</body>
+</html>
