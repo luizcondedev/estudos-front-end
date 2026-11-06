@@ -17,13 +17,13 @@ npm create vite@latest lojinha-vite -- --template vanilla --no-interactive
 ```
 
 Abra a pasta `lojinha-vite` no IntelliJ. Onde fica o `index.html`: na raiz do projeto, dentro de `src` ou dentro de `public`?
-Resposta:
+Resposta: Na Raiz do projeto
 
 Que tag o `index.html` usa para carregar o JavaScript, e com qual atributo `type`? O que esse atributo faz com o momento em que o script roda (aula 2.3)?
-Resposta:
+Resposta: Tag Script e type module, o type module faz com que o navegador leia o JS somente apos o navegador ler todo o HTML. 
 
 Quais são os três scripts do `package.json`? Em qual seção está o `vite`, e por quê (seção 4)?
-Resposta:
+Resposta: dev, build e preview, e o vite está em devDependencies, pois ele é uma ferramenta de desenvolvimento o navegador recebe apenas os arquivos gerados pelo build. 
 
 b) **Troque o exemplo do modelo pela Lojinha.** Entre na pasta do projeto e rode, um comando por vez:
 
@@ -43,17 +43,17 @@ Os dois primeiros comandos apagam o contador e as imagens do exemplo; os dois `C
 ### 2) O servidor de desenvolvimento
 
 a) Rode `npm run dev`. Qual endereço o Vite mostrou? Abra esse endereço no Chrome: o que aparece na página?
-Resposta:
+Resposta: localhost:5173, aparece a lojinha do dev com 3 produtos no carrinho
 
 b) Abra o DevTools (**F12**) na aba **Network** e recarregue a página. Os seus arquivos `main.js`, `produtos.js` e `util.js` aparecem como requisições **separadas**? Por que o Vite não juntou tudo num arquivo só (seção 3.1)?
-Resposta:
+Resposta: Aparecem como requisições diferentes, o vite não juntou tudo pois em desenvolvimento, ele serve cada modulo separado, carregado pelo type module. 
 
 c) Com a página aberta ao lado do IntelliJ:
 - No `src/style.css`, troque a cor do `h1` de `#1f6f5c` para `crimson` e salve.
 - No `src/main.js`, troque o texto `produtos no carrinho` por `itens no carrinho` e salve.
 
 A página mudou sem você apertar F5? Qual das duas mudanças foi aplicada **sem recarregar** a página, e qual fez o Vite **recarregar** a página sozinho (seção 3.1)?
-Resposta:
+Resposta: Sim, a mudança do CSS foi feita sem recarregar a pagina e na mudança do JS o Vite recarregou a pagina sozinho. 
 
 ---
 
@@ -81,13 +81,13 @@ document.querySelector("#data").textContent =
 ```
 
 O que apareceu na página?
-Resposta:
+Resposta: Hoje é sexta-feira, 6 de novembro
 
 b) Na aba **Network**, recarregue a página e procure a requisição do `date-fns`. De qual caminho ela veio?
-Resposta:
+Resposta: http://localhost:5173/node_modules/.vite/deps/date-fns.js?v=6b6ac24c
 
 Por que o navegador, sozinho, não conseguiria fazer o `import ... from "date-fns"` (seção 1.2)? E quem resolveu isso aqui?
-Resposta:
+Resposta: Pois o navegador não conhece a node_modules, o vite resolveu isso para mim. 
 
 ---
 
@@ -95,27 +95,33 @@ Resposta:
 
 a) Pare o servidor (**Ctrl+C**) e rode `npm run build`. Copie aqui as linhas que começam com `dist/` e a linha dos `modules transformed`:
 Resposta:
+✓ 317 modules transformed.
+computing gzip size...
+dist/index.html                  0.72 kB │ gzip: 0.42 kB
+dist/assets/index-7XSYyUW2.css   0.28 kB │ gzip: 0.21 kB
+dist/assets/index-CeBJ37TQ.js   26.13 kB │ gzip: 7.29 kB
+
 
 Quantos módulos o Vite leu, e qual é o tamanho do arquivo `.js` final? Por que tantos módulos viraram um arquivo tão pequeno (seção 5)?
-Resposta:
+Resposta: Ele leu 317 modulos, e o tamanho do arquivo final ficou de 26.13 kb, ele viraram um arquivo pequeno graças ao tree shaking, que descarta todo o código não utilizado 
 
 b) Abra o arquivo `.js` da pasta `dist/assets`. Como ele está escrito, comparado com o seu `main.js`?
-Resposta:
+Resposta: Tudo minificado e em apenas uma linha. 
 
 Use o **Ctrl+F** nesse arquivo e procure o texto `Café Torrado`. Ele está lá?
-Resposta:
+Resposta: Está sim
 
 Agora procure `Frete grátis`, que está na função `mensagemFrete` do `util.js`. Ele está lá? Por quê (seção 2)?
-Resposta:
+Resposta: Não está, pois como não foi utilizada a função mensagemFrete, ela foi ignorada no build. 
 
 c) Rode `npm run preview` e abra o endereço que ele mostrar. Na aba **Network** (recarregue a página), quantos arquivos `.js` a página baixou agora, comparando com o exercício 2b?
-Resposta:
+Resposta: Baixou apenas 1 arquivo, comparado com os 3 de antes.
 
 d) Pare o preview (**Ctrl+C**). No `main.js`, troque `itens no carrinho` por `itens na sacola`, salve e rode `npm run build` de novo. Compare os nomes dos arquivos com os do item a: qual nome mudou, e qual continuou igual?
-Resposta:
+Resposta: Mudou apenas o nome do JS.
 
 Por que isso é bom para o cache do navegador dos seus usuários (seção 2, passo 6)?
-Resposta:
+Resposta: Pois assim o navegador consegue saber qual arquivo foi modificado, assim ele consegue usar o arquivo que não foi modificado do cache e baixar apenas o arquivo que foi modificado. 
 
 ---
 
@@ -145,19 +151,19 @@ document.querySelector("#ambiente").textContent =
 > 💡 O `.gitignore` da raiz do repositório do curso ignora todos os arquivos `.env`, por segurança: eles não vão para o GitHub.
 
 Rode `npm run dev`. O que aparece no título e na última linha da página?
-Resposta:
+Resposta: Lojinha do Dev (desenvolvimento) e Modo: development | Segredo: undefined
 
 Por que o `SEGREDO` apareceu como `undefined` (seção 6)?
-Resposta:
+Resposta: Pois, as unicas informações que vão para o JS são as que começam com VITE_, o restante é undefined sempre. 
 
 b) Pare o servidor e rode `npm run build` e `npm run preview`. O que aparece agora no título e na última linha? Por que o título mudou?
-Resposta:
+Resposta: Lojinha do Dev e Modo: production | Segredo: undefined, o titulo mudou pois o env de produção tem prioridade sobre o .env normal. 
 
 c) Abra o `.js` da `dist/assets` e procure (**Ctrl+F**) o texto `Lojinha do Dev`. Ele está lá? E o `senha-super-secreta`?
-Resposta:
+Resposta: O "Lojinha do dev" esta sim, e a senha secreta não. 
 
 Com base nisso: se a Lojinha precisasse de uma chave de API de pagamento, você poderia colocá-la numa variável `VITE_`? Onde ela deveria ficar (seção 6)?
-Resposta:
+Resposta: Não podemos nunca colocar um segredo numa variável VITE_, ela deveria ficar no Back-End (no spring ou um servidor next.js)
 
 ---
 
