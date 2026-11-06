@@ -18,13 +18,17 @@ const produtos = [
 //   - total: a soma de preço x quantidade dos produtos daquela categoria
 // Não altere o array produtos.
 function resumoPorCategoria(lista) {
-    const resumo = lista.reduce((acumulador, produto) => ({
-        ...acumulador,
-        [produto.categoria]: {
-                itens: (acumulador[produto.categoria]?.itens ?? 0) + produto.quantidade,
-                total: (acumulador[produto.categoria]?.total ?? 0) + (produto.preco * produto.quantidade)
-            }
-    }), {})
+    const resumo = {};
+
+    for(const produto of lista){
+        const categoria = produto.categoria;
+        if(!resumo[categoria]){
+            resumo[categoria] = {itens: 0, total: 0};
+        }
+
+        resumo[categoria].itens += produto.quantidade;
+        resumo[categoria].total += produto.preco * produto.quantidade
+    }
 
     return resumo;
 }
