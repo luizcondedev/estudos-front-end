@@ -61,7 +61,7 @@ node 01-javascript/aula-02-objetos-spread-destructuring/exercicios.js
 - [x] 2.8 ✅ Estudando com IA: usar a IA como tutor, e não como atalho (o que pedir e o que **não** pedir enquanto aprende)
 
 ## Módulo 3: HTML e CSS (revisão completa)
-- [ ] 3.1 ✅ HTML semântico e estrutura de um documento
+- [x] 3.1 ✅ HTML semântico e estrutura de um documento
 - [ ] 3.2 ✅ Formulários HTML e validação nativa
 - [ ] 3.3 ✅ Acessibilidade (a11y): semântica, `alt`, `label`, ARIA básico, navegação por teclado
 - [ ] 3.4 🔍 SEO básico: meta tags, títulos, semântica

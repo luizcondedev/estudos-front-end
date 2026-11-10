@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caneca do Dev | Lojinha do Dev</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            background: #f4f4f7;
+            color: #222;
+        }
+
+        .topo {
+            background: #1f6f5c;
+            color: white;
+            padding: 16px 24px;
+        }
+
+        .marca {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .menu a {
+            color: white;
+            margin-right: 12px;
+        }
+
+        /* Deixa uma lista dentro do menu em linha e sem bolinhas (display: flex é da aula 3.7) */
+        .menu ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 8px 0 0;
+        }
+
+        .conteudo {
+            max-width: 720px;
+            margin: 24px auto;
+            padding: 0 16px;
+        }
+
+        .produto {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .titulo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 24px 0 8px;
+        }
+
+        .autor {
+            font-weight: bold;
+        }
+
+        .preco {
+            color: #1f6f5c;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .avaliacao {
+            border-top: 1px solid #eee;
+            padding: 12px 0;
+        }
+
+        .lateral {
+            margin-top: 24px;
+            padding: 16px;
+            background: #e8f3f0;
+            border-radius: 8px;
+        }
+
+        .rodape {
+            text-align: center;
+            color: #555;
+            padding: 24px;
+        }
+    </style>
+</head>
+<body>
+<header class="topo">
+    <div class="marca">Lojinha do Dev</div>
+    <nav class="menu">
+        <ul>
+            <li>
+                <a href="#">Início</a>
+            </li>
+            <li>
+                <a href="#">Canecas</a>
+            </li>
+            <li>
+                <a href="#">Camisetas</a>
+            </li>
+            <li>
+                <a href="#">Contato</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main class="conteudo">
+    <article class="produto">
+        <h1 class="titulo">Caneca do Dev</h1>
+        <p>
+            Publicado em <time datetime="2026-11-06">06/11/2026</time>
+        </p>
+        <img src="imagens/caneca.svg" width="160" alt="Caneca verde com o símbolo de uma tag html fechada">
+        <p>
+            A caneca oficial de quem programa até tarde. Cabe <strong>350 ml</strong> de café, e o desenho
+            <em>não</em> sai na lava-louças.
+        </p>
+        <p>
+            <span class="preco">R$ 39,90</span>
+        </p>
+
+        <section>
+            <h2 class="subtitulo">Características</h2>
+            <ul>
+                <li>Cerâmica Resistente</li>
+                <li>Capacidade de 350 ml</li>
+                <li>Pode ir no micro-ondas</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2 class="subtitulo">Avaliações</h2>
+            <article class="avaliacao">
+                <h3 class="autor">Ana</h3>
+                <p>Perfeita para o café da manhã. Recomendo!</p>
+            </article>
+            <article class="avaliacao">
+                <h3 class="autor">Bruno</h3>
+                <p>Chegou rápido, mas é menor do que eu imaginava.</p>
+            </article>
+        </section>
+    </article>
+
+    <aside class="lateral">
+        <section>
+            <h2 class="subtitulo">Você também pode gostar</h2>
+            <ul>
+                <li>
+                    <a href="#">Camiseta JavaScript</a>
+                </li>
+                <li>
+                    <a href="#">Moletom TypeScript</a>
+                </li>
+            </ul>
+        </section>
+    </aside>
+</main>
+
+<footer class="rodape">
+    <small>© 2026 Lojinha do Dev. Todos os direitos reservados.</small>
+</footer>
+</body>
+</html>

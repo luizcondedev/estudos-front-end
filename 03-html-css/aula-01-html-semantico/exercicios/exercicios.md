@@ -17,25 +17,25 @@ npx vite
 ### 1) Medindo a página "antes"
 
 a) Olhe o menu e o texto da página. O que aconteceu com os acentos ("Início", "café")?
-Resposta:
+Resposta: Ficaram todos bugados, por conta da falta do utf-8 
 
 No **Console** do DevTools, digite `document.characterSet`. Qual valor aparece? Qual linha falta no `antes.html` para os acentos funcionarem (seção 1)?
-Resposta:
+Resposta:windows-1252, fica faltando o meta charset utf 8. 
 
 b) Ainda no Console, digite `document.compatMode`. Qual valor aparece? (`"BackCompat"` é o modo de compatibilidade; `"CSS1Compat"`, o modo padrão.) Qual linha falta no `antes.html` para o navegador usar o modo padrão?
-Resposta:
+Resposta: Back Compat, falta o doctype html 
 
 c) Na aba **Lighthouse**, marque **só** a categoria **Accessibility** e gere o relatório (modo **Navigation**). Qual foi a nota?
-Resposta:
+Resposta: 41
 
 Cite **dois** problemas que o relatório listou.
-Resposta:
+Resposta: Imagens sem os atributos alt e sem um elemento `<title>`. 
 
 d) Na aba **Elements**, selecione o `<div class="titulo">` ("Caneca do Dev") e abra a aba **Accessibility**, no painel da direita (ao lado de **Styles**; se não aparecer, clique em **»**). Qual é o **Role** (o papel) desse elemento?
-Resposta:
+Resposta: generic
 
 Por que um leitor de tela não vai anunciar esse texto como o título da página?
-Resposta:
+Resposta: pois, ele deveria estar dentro de uma tag h1 e não dentro de um div. 
 
 ---
 
@@ -43,28 +43,28 @@ Resposta:
 
 Para cada trecho do `antes.html`, diga qual tag semântica deveria estar no lugar (seções 3 a 5):
 
-| Trecho do `antes.html` | Tag semântica |
-|---|---|
-| `<div class="topo">` | Resposta: |
-| `<div class="menu">` e os links dentro dele | Resposta: |
-| `<div class="conteudo">` | Resposta: |
-| `<div class="produto">` | Resposta: |
-| `<div class="titulo">Caneca do Dev</div>` | Resposta: |
-| `<div class="subtitulo">` (dentro do produto) | Resposta: |
-| Os três `<div>` com "•" | Resposta: |
-| `<div class="avaliacao">` | Resposta: |
-| `<div class="autor">` | Resposta: |
-| `<div class="lateral">` | Resposta: |
-| `<div class="rodape">` | Resposta: |
-| `<b>` e `<i>` | Resposta: |
-| O texto separado por `<br><br>` | Resposta: |
-| "Publicado em 06/11/2026" | Resposta: |
+| Trecho do `antes.html`                        | Tag semântica                                              |
+|-----------------------------------------------|------------------------------------------------------------|
+| `<div class="topo">`                          | Resposta: `<header>`                                         |
+| `<div class="menu">` e os links dentro dele   | Resposta: `<nav>`                                            |
+| `<div class="conteudo">`                      | Resposta:`<main>`                                            |
+| `<div class="produto">`                       | Resposta:  `<article>`                                       |
+| `<div class="titulo">Caneca do Dev</div>`     | Resposta:`<h1>`                                              |
+| `<div class="subtitulo">` (dentro do produto) | Resposta: `<section>`                                        |
+| Os três `<div>` com "•"                       | Resposta: `<ul>` + `<li>`                                      |
+| `<div class="avaliacao">`                     | Resposta: `<article>`                                        |
+| `<div class="autor">`                         | Resposta: `<h3>`                                             |
+| `<div class="lateral">`                       | Resposta: `<aside>`                                          |
+| `<div class="rodape">`                        | Resposta:  `<footer>`                                        |
+| `<b>` e `<i>`                                 | Resposta: `<strong>` e `<em>`                                  |
+| O texto separado por `<br><br>`               | Resposta: `<p>`                                              |
+| "Publicado em 06/11/2026"                     | Resposta: `<time>` com datetime com horarios para "maquinas" |
 
 Por que cada avaliação é um `<article>`, e "Características" é uma `<section>` (seção 3)?
-Resposta:
+Resposta: Pq um article tem que fazer sozinho, caso seja levada para uma outra pagina, agora as características não fazem sentido caso seja levado sozinho. 
 
 O nome da loja, "Lojinha do Dev", deve ser o `<h1>` desta página? Por quê (seção 4)?
-Resposta:
+Resposta: Não, o H1 da página deve ser seu conteúdo principal no caso, caneca do dev. 
 
 ---
 
@@ -83,26 +83,27 @@ Copie o `antes.html` para um arquivo novo, o `depois.html`, na mesma pasta (no I
 **Etapa 4, o conteúdo:** os parágrafos em `<p>` (sem os `<br>`), a lista de características numa `<ul>` (sem os "•"), o `<strong>` e o `<em>`, a data num `<time datetime="2026-11-06">`, o `alt` da imagem (seção 5), os links do `<aside>` numa `<ul>` e o texto do rodapé num `<small>`.
 
 a) Em qual etapa a página mais mudou de **aparência**? Por que ela mudou, se você não mexeu no CSS (seção 6, "os estilos padrão do navegador")?
-Resposta:
+Resposta: Colocar o charset, pois os caracteres estavam muito bugados e a etapa 2, parece que a página ficou melhor formatada
 
 b) Qual texto você escreveu no `alt` da imagem?
-Resposta:
+Resposta: Caneca verde com o símbolo de uma tag html fechada
 
 ---
 
 ### 4) Medindo a página "depois"
 
 a) No Console, quais são agora os valores de `document.characterSet` e de `document.compatMode`? Os acentos apareceram certos?
-Resposta:
+Resposta: UTF-8 e CSS1Compat, sim, os acentos estão corretos
 
 b) Rode o **Lighthouse** de novo, só com **Accessibility**. Qual foi a nota, comparando com a do exercício 1c?
-Resposta:
+Resposta: 92
 
 c) Cole todo o conteúdo do `depois.html` no validador do W3C ([validator.w3.org/nu](https://validator.w3.org/nu/#textarea)) e clique em **Check**. Quantos erros apareceram? Se apareceu algum, qual era, e como você corrigiu?
-Resposta:
+Resposta: Nenhum erro, apenas um warning: "A seção não tem título. Considere usar elementos - para adicionar títulos de identificação a todas as seções, ou então use um elemento para quaisquer casos em que nenhum título seja necessário.h2h6div" 
+Solução: Eu tinha esquecido de colocar o h3 na segunda avaliação e apenas coloquei. 
 
 d) Na aba **Elements**, selecione o `<h1>` e veja a aba **Accessibility**. Qual é o **Role** agora? E o do `<nav>`?
-Resposta:
+Resposta: do h1 é heading e da nav é navigation
 
 ---
 
@@ -121,4 +122,4 @@ Crie um arquivo `teste-p.html` nesta pasta, com:
 ```
 
 Abra **http://localhost:5173/teste-p.html** e olhe a aba **Elements**. Como o navegador montou o DOM? Quantos `<p>` aparecem? Por quê (seção 6)?
-Resposta:
+Resposta:Apareceram 2 tags p, e o motivo é que a tag p só aceita elementos em linha dentro dele (textos, a, strong)
