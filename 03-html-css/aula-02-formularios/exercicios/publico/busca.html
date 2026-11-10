@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Busca | Lojinha do Dev</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <main>
+    <h1>Buscar produtos</h1>
+
+    <form action="/busca" method="get">
+      <p>
+        <label for="termo">O que você procura?</label>
+        <input type="search" id="termo" name="q">
+      </p>
+      <p>
+        <label for="categoria">Categoria</label>
+        <select id="categoria" name="categoria">
+          <option value="todas">Todas</option>
+          <option value="canecas">Canecas</option>
+          <option value="roupas">Camisetas e moletons</option>
+        </select>
+      </p>
+      <button type="submit">Buscar</button>
+    </form>
+  </main>
+</body>
+</html>

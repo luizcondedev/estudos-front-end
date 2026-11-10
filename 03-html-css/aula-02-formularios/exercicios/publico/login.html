@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar | Lojinha do Dev</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <main>
+    <h1>Entrar na Lojinha</h1>
+
+    <!-- Exercício 2: este formulário tem 5 bugs. Observe os sintomas ANTES de consertar. -->
+    <form action="/login" method="get">
+      <p>
+        <label>E-mail</label>
+        <input type="email" id="email">
+      </p>
+      <p>
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha">
+      </p>
+      <fieldset>
+        <legend>Continuar conectado neste computador?</legend>
+        <label><input type="radio" name="lembrar-sim" value="sim"> Sim</label>
+        <label><input type="radio" name="lembrar-nao" value="nao"> Não</label>
+      </fieldset>
+      <button>Limpar</button>
+      <button type="submit">Entrar</button>
+    </form>
+  </main>
+</body>
+</html>
